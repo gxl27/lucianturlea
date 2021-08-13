@@ -1,0 +1,20 @@
+@media (min-aspect-ratio: 8/5) {
+    #main{
+      background-image: url("/public/img/bg.jpg");
+      }
+    }
+@media (min-aspect-ratio: 14/5) {
+    #main{
+        background-image: url("/public/img/logo.svg");
+
+        }
+    .logo{
+        display: none;
+        }
+    #menulist ul{
+        height: 80%;
+    }
+    #main-left{
+        background-image: linear-gradient(90deg, rgb(14, 14, 14), rgba(14, 14, 14, 0.83), rgba(63, 63, 63, 0.664));
+    }
+  }

@@ -1,11 +1,17 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Log in!{% endblock %}
+{% block stylesheets %}
+    {#{{ encore_entry_link_tags('app') }}#}
+    {# <link rel="stylesheet" type="text/css" href="/assets/css/fonts-v1.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/main-v1.css"> #}
+    {{ encore_entry_link_tags('admin') }}
 
+{% endblock %}
 {% block body %}
 <style>
 #main{
-     background-image: url("/assets/img/login.jpg");
+     background-image: url("/img/login.jpg");
      filter:grayscale(75%);
      justify-content:center;
 }
@@ -28,7 +34,7 @@
 
         <div id='main-right'>
                 <div id="logo">
-                <img src="/assets/img/lucianturlea.svg">
+                <img src="/img/lucianturlea.svg">
             </div>
            <form method="post">
                 {% if error %}
@@ -74,3 +80,7 @@
 
 
 {% endblock %}
+ {% block mainjavascript %}
+        {# <script src="/js/main-v1.js"></script> #}
+           {{ encore_entry_script_tags('admin') }}
+    {% endblock %}   

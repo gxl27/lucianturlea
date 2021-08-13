@@ -11,12 +11,15 @@
            and uncomment the following Encore helpers to start using Symfony UX #}
         {% block stylesheets %}
             {#{{ encore_entry_link_tags('app') }}#}
-            <link rel="stylesheet" type="text/css" href="/assets/css/fonts-v1.css">
-            <link rel="stylesheet" type="text/css" href="/assets/css/main-v1.css">
+            {# <link rel="stylesheet" type="text/css" href="/assets/css/fonts-v1.css">
+            <link rel="stylesheet" type="text/css" href="/assets/css/main-v1.css"> #}
+            {{ encore_entry_link_tags('app') }}
+
         {% endblock %}
 
         {% block javascripts %}
-            {#{{ encore_entry_script_tags('app') }}#}
+           
+            
         {% endblock %}
     </head>
     
@@ -32,6 +35,7 @@
      {# <script src="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.6/flatpickr.min.js" integrity="sha512-Nc36QpQAS2BOjt0g/CqfIi54O6+UWTI3fmqJsnXoU6rNYRq8vIQQkZmkrRnnk4xKgMC3ESWp69ilLpDm6Zu8wQ==" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.6/l10n/ro.min.js" integrity="sha512-TUeuMefsiJXsoCSnaftAgb+df2dkq8ljkFw4JLAtDb3gfxalGo72jUVOz0vz0KxvrvqDsJnclfrv4WLrXwGrkQ==" crossorigin="anonymous"></script> #}
     {% block mainjavascript %}
-        <script src="/assets/js/main-v1.js"></script>
+        {# <script src="/assets/js/main-v1.js"></script> #}
+           {{ encore_entry_script_tags('app') }}
     {% endblock %}        
 </html>
