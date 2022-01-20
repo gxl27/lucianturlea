@@ -77,3 +77,9 @@
   src:  url('/assets/styles/fonts/Poppins/Poppins-SemiBold.ttf') format('truetype')
 }
 
+/* share tech mono */
+@font-face {
+  font-family: 'Share-Tech-Mono';
+  src:  url('/assets/styles/fonts/ShareTechMono/ShareTechMono.ttf') format('truetype')
+}
+

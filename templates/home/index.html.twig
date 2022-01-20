@@ -2,83 +2,366 @@
 
 {% block title %}Lucianturlea.ro{% endblock %}
 {% block body %}
-    {# <div id='main-matrix'>
+     <div id='initialize'>
+        <div class="init-row">
+            <div class='init1'>
+                checking website adress 
+                <span class='init-dots init2'>
+                . . . 
+                </span>
+            </div>
+            
+            <div class='init-success init3'>
+                successfully!
+            </div>
+        </div>
+        <div class="init-row">
+            <div class='init4'>
+                transfer data 
+                <span class='init-dots init5'>
+                . . . 
+                </span>
+            </div>
 
-    </div> #}
+            <div class='init-success init6'>
+                successfully!
+            </div>
+        </div>
+        <div class="init-row">
+            <div class='init7'>
+                initialize portofolio 
+                <span class='init-dots init8'>
+                . . . 
+                </span>
+            </div>
+
+        </div>
+    </div>
+   
     <div id='main'>
-       
-       <div id="main-absolute">
+         <div id="main-absolute">
         {# <img src="/img/git.png">
         <img src="/img/php.png">
         <img src="/img/symfony.png">
         <img src="/img/js.png">
         <img src="/img/linux.png"> #}
-       </div>
-        <div id='main-left'>
-            
-            
-           <div id="menulist">
-                <ul>
-                    <li>About me</li>
-                    <li>My projects</li>
-                    <li>Contact</li>
-                </ul>
-           </div>
-
-        </div>
-        <div id='main-right'>
-        </div>
-        <div id='social-media'>
-
-        <div class="logo">
-            <div>
-                <img src="/img/logo.svg">
-            </div>
-            
-            <div style='font-size:1.1em'>- Software developer -</div> 
-            
-        
-        </div>
-    
-        
-        <div class='tags'>
-            <div>php</div><div>javascript</div><div>html</div><div>css</div><div>mysql</div>
-        </div>
-        <div class='tags'>   
-            <div>symfony</div><div>linux</div><div>git</div>
         </div>  
-         <div class='social-media'><div><img src="/img/github.svg"><span>View github</span></div><div><img src="/img/gmail.svg"> <span>Send message</span></div><div><img src="/img/pdf.svg"> <span>Download cv</span></div></div>
-        </div>
-       
-    </div>
-    {# <div>
-        <svg style="pointer-events: none" class="wave" width="100%" height="50px" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1920 75">
-            <defs>
-                
-                <style>.a{fill:none}.b{clip-path:url(#a)}.c,.d {fill: #ccc;}.d{opacity:0.5;isolation:isolate;}</style>
-                <clipPath id="a">
-                    <rect class="a" width="1920" height="75"></rect>
-                </clipPath>
-            </defs>
-            <g class="b">
-                <path class="c" d="M1963,327H-105V65A2647.49,2647.49,0,0,1,431,19c217.7,3.5,239.6,30.8,470,36,297.3,6.7,367.5-36.2,642-28a2511.41,2511.41,0,0,1,420,48">
-                </path>
-            </g>
-            <g class="b">
-                <path class="d" d="M-127,404H1963V44c-140.1-28-343.3-46.7-566,22-75.5,23.3-118.5,45.9-162,64-48.6,20.2-404.7,128-784,0C355.2,97.7,341.6,78.3,235,50,86.6,10.6-41.8,6.9-127,10">
-                </path>
-            </g>
-            <g class="b">
-                <path class="d" d="M1979,462-155,446V106C251.8,20.2,576.6,15.9,805,30c167.4,10.3,322.3,32.9,680,56,207,13.4,378,20.3,494,24">
-                </path>
-            </g>
-            <g class="b">
-                <path class="d" d="M1998,484H-243V100c445.8,26.8,794.2-4.1,1035-39,141-20.4,231.1-40.1,378-45,349.6-11.6,636.7,73.8,828,150">
-                </path>
-            </g>
-        </svg>
-    </div> #}
+        <div id="content">
+            <section id='section-first'>
+                <div id='section-first-left'>
+                    <div id="menulist">
+                        <ul>
+                            <li class='menu-item' data-scroll="#section-second">
+                                <div class='menu-item-imgs'>
+                                    <img src="/img/project-white.svg">
+                                    <img src="/img/project.svg">
+                                </div>
+                                <span>Projects</span>
+                            </li>
+                            <li class='menu-item' data-scroll="#section-third">
+                                <div class='menu-item-imgs'>
+                                    <img src="/img/experience-white.svg">
+                                    <img src="/img/experience.svg">
+                                </div>
+                                <span>Experience</span>
+                            </li>
+                            <li class='menu-item' data-scroll="#section-forth">
+                                <div class='menu-item-imgs'>
+                                    <img src="/img/aboutme-white.svg">
+                                    <img src="/img/aboutme.svg">
+                                </div>
+                                <span>About me</span>
+                            </li>
+                            <li class='menu-item' data-scroll="#section-fifth">
+                                <div class='menu-item-imgs'>
+                                    <img src="/img/contact-white.svg">
+                                    <img src="/img/contact.svg">
+                                </div>
+                                <span>Contact</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div id="composite-arrow" class='composite-anime'>
+                        {# <img src="/img/composite-arrow.svg"> #}
+                         <img src="/img/composite-arrow.svg">
+                    </div>  
+                </div>
+                <div id='section-first-right'>
+                    <div class="logo">
+                        <div>
+                            <img src="/img/logo.svg">
+                        </div>
+                        
+                        <div style='font-size:1.2em'>
+                            - Software developer -
+                        </div>  
+                        <div class='message-me'>
+                        <a href="mailto:gabrielturlea27@gmail.com"><img src="/img/msg.svg" style='width:25px'>Message me</a>  
+                            
+                        </div>          
+                    </div>
+                    <img class='descend' src="/img/descend.svg">
+                </div>
+            </section>
 
+            <section id='section-second'>
+                {# <img src="/img/projectdraw.png"> #}
+                <div class="container">
+                    <h1>My Projects</h1>
+                    <div class="card-holder">
+                        <div class="card">
+                            <div class="card-title">
+                                <h2>Design patterns  www.design-patterns.lucianturlea.ro</h2>
+                                <h3>- All 23 classic design patters -</h3>
+                            </div>
+                            <div class="card-content">
+                                This application it's part of the portofolio
+                                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laborum perspiciatis odio enim officiis nemo, porro iste dignissimos reprehenderit amet quibusdam ipsum minima delectus assumenda architecto rerum aliquid commodi totam asperiores.
+                            </div>
+                            <div class="card-footer">
+                                technologies
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-title">
+                                <h2>Nova - www.nova.lucianturlea.ro</h2>
+                                <h3>- Custom tourism accomodation software -</h3>
+                            </div>
+                            <div class="card-content">
+                                This application it's part of the portofolio
+                                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laborum perspiciatis odio enim officiis nemo, porro iste dignissimos reprehenderit amet quibusdam ipsum minima delectus assumenda architecto rerum aliquid commodi totam asperiores.
+                            </div>
+                            <div class="card-footer">
+                                technologies
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-title">
+                                <h2>Fistic romania www.fisticromania.ro</h2>
+                                <h3>- presentation website -</h3>
+                            </div>
+                            <div class="card-content">
+                                This application it's part of the portofolio
+                                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laborum perspiciatis odio enim officiis nemo, porro iste dignissimos reprehenderit amet quibusdam ipsum minima delectus assumenda architecto rerum aliquid commodi totam asperiores.
+                            </div>
+                            <div class="card-footer">
+                                technologies
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-title">
+                                <h2>Caprirom - www.caprirom.lucianturlea.ro</h2>
+                                <h3>- ONG webpage -</h3>
+                            </div>
+                            <div class="card-content">
+                                This application it's part of the portofolio
+                                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laborum perspiciatis odio enim officiis nemo, porro iste dignissimos reprehenderit amet quibusdam ipsum minima delectus assumenda architecto rerum aliquid commodi totam asperiores.
+                            </div>
+                            <div class="card-footer">
+                                technologies
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <img class='descend-rotate' src="/img/descend-rotate.svg">            
+            </section>
+            <section id='section-third'>
+                <div class="container">
+                    <h1>Experience</h1>
+                </div>
+                <div class="container">
+                    <h1>My Projects</h1>
+                    <div class="card-holder">
+                        <div class="card">
+                            <div class="card-title">
+                                <h2>Design patterns  www.design-patterns.lucianturlea.ro</h2>
+                                <h3>- All 23 classic design patters -</h3>
+                            </div>
+                            <div class="card-content">
+                                This application it's part of the portofolio
+                                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laborum perspiciatis odio enim officiis nemo, porro iste dignissimos reprehenderit amet quibusdam ipsum minima delectus assumenda architecto rerum aliquid commodi totam asperiores.
+                            </div>
+                            <div class="card-footer">
+                                technologies
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-title">
+                                <h2>Nova - www.nova.lucianturlea.ro</h2>
+                                <h3>- Custom tourism accomodation software -</h3>
+                            </div>
+                            <div class="card-content">
+                                This application it's part of the portofolio
+                                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laborum perspiciatis odio enim officiis nemo, porro iste dignissimos reprehenderit amet quibusdam ipsum minima delectus assumenda architecto rerum aliquid commodi totam asperiores.
+                            </div>
+                            <div class="card-footer">
+                                technologies
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-title">
+                                <h2>Fistic romania www.fisticromania.ro</h2>
+                                <h3>- presentation website -</h3>
+                            </div>
+                            <div class="card-content">
+                                This application it's part of the portofolio
+                                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laborum perspiciatis odio enim officiis nemo, porro iste dignissimos reprehenderit amet quibusdam ipsum minima delectus assumenda architecto rerum aliquid commodi totam asperiores.
+                            </div>
+                            <div class="card-footer">
+                                technologies
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-title">
+                                <h2>Caprirom - www.caprirom.lucianturlea.ro</h2>
+                                <h3>- ONG webpage -</h3>
+                            </div>
+                            <div class="card-content">
+                                This application it's part of the portofolio
+                                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laborum perspiciatis odio enim officiis nemo, porro iste dignissimos reprehenderit amet quibusdam ipsum minima delectus assumenda architecto rerum aliquid commodi totam asperiores.
+                            </div>
+                            <div class="card-footer">
+                                technologies
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {# <div id='social-media'>            
+                    <div class='tags'>
+                        <div>php</div><div>javascript</div><div>html</div><div>css</div><div>mysql</div>
+                    </div>
+                    <div class='tags'>   
+                        <div>symfony</div><div>linux</div><div>git</div>
+                    </div>  
+                    <div class='social-media'><div><img src="/img/github.svg"><span>View github</span></div><div><img src="/img/gmail.svg"> <span>Send message</span></div><div><img src="/img/pdf.svg"> <span>Download cv</span></div></div>
+                    </div>
+                </div> #}
+            
+            </section>
+            <section id='section-forth'>
+                <div class="container">
+                    <h1>About me</h1>
+                </div>
+                <div class="container">
+                    <div class="card-holder">
+                        <div class="card">
+                            <div class="card-title">
+                                <h2>Design patterns  www.design-patterns.lucianturlea.ro</h2>
+                                <h3>- All 23 classic design patters -</h3>
+                            </div>
+                            <div class="card-content">
+                                This application it's part of the portofolio
+                                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laborum perspiciatis odio enim officiis nemo, porro iste dignissimos reprehenderit amet quibusdam ipsum minima delectus assumenda architecto rerum aliquid commodi totam asperiores.
+                            </div>
+                            <div class="card-footer">
+                                technologies
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-title">
+                                <h2>Nova - www.nova.lucianturlea.ro</h2>
+                                <h3>- Custom tourism accomodation software -</h3>
+                            </div>
+                            <div class="card-content">
+                                This application it's part of the portofolio
+                                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laborum perspiciatis odio enim officiis nemo, porro iste dignissimos reprehenderit amet quibusdam ipsum minima delectus assumenda architecto rerum aliquid commodi totam asperiores.
+                            </div>
+                            <div class="card-footer">
+                                technologies
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-title">
+                                <h2>Fistic romania www.fisticromania.ro</h2>
+                                <h3>- presentation website -</h3>
+                            </div>
+                            <div class="card-content">
+                                This application it's part of the portofolio
+                                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laborum perspiciatis odio enim officiis nemo, porro iste dignissimos reprehenderit amet quibusdam ipsum minima delectus assumenda architecto rerum aliquid commodi totam asperiores.
+                            </div>
+                            <div class="card-footer">
+                                technologies
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-title">
+                                <h2>Caprirom - www.caprirom.lucianturlea.ro</h2>
+                                <h3>- ONG webpage -</h3>
+                            </div>
+                            <div class="card-content">
+                                This application it's part of the portofolio
+                                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laborum perspiciatis odio enim officiis nemo, porro iste dignissimos reprehenderit amet quibusdam ipsum minima delectus assumenda architecto rerum aliquid commodi totam asperiores.
+                            </div>
+                            <div class="card-footer">
+                                technologies
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {# <div id='social-media'>            
+                    <div class='tags'>
+                        <div>php</div><div>javascript</div><div>html</div><div>css</div><div>mysql</div>
+                    </div>
+                    <div class='tags'>   
+                        <div>symfony</div><div>linux</div><div>git</div>
+                    </div>  
+                    <div class='social-media'><div><img src="/img/github.svg"><span>View github</span></div><div><img src="/img/gmail.svg"> <span>Send message</span></div><div><img src="/img/pdf.svg"> <span>Download cv</span></div></div>
+                    </div>
+                </div> #}
+            
+            </section>
+            <section id='section-fifth'>
+                <div class="container">
+                    <h1>Contact</h1>
+                </div>
+                <div class="container">
+                    <div class="card-holder">
+                        {% for project in projects %}
+                        <div class="card">
+                            <div class='card-photo'>
+                            {% if project.photo %}          
+                                <img  src=" {{ vich_uploader_asset(project.photo, 'projectImages') | imagine_filter('img') }} " alt="project-{{ project.photo.id }}">             
+                            {% else %}
+                                <img src="/img/no-picture-mini.jpg">
+                            {% endif %}
+                            </div>
+                            <div class="card-title">
+                                <h2>{{ project.name }}</h2>
+                                
+                                <h3>{{ project.subtitle }}</h3>
+                            </div>
+                            <div class="card-content">
+                                {{ project.description }}
+                            </div>
+                            <div class="card-footer">
+                                <ul>
+                                    <li>Framework: {{ project.framework }}</li>
+                                    <li>Link: {{ project.link }}</li>
+                                    <li>Login: {{ project.login }}</li>
+                                    <li>Public: {{ project.public ? "Yes" : "No" }}</li>
+                                    <li>Login: {{ project.production ? "Yes" : "No" }}</li>
+                                </ul>
+
+
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                {# <div id='social-media'>            
+                    <div class='tags'>
+                        <div>php</div><div>javascript</div><div>html</div><div>css</div><div>mysql</div>
+                    </div>
+                    <div class='tags'>   
+                        <div>symfony</div><div>linux</div><div>git</div>
+                    </div>  
+                    <div class='social-media'><div><img src="/img/github.svg"><span>View github</span></div><div><img src="/img/gmail.svg"> <span>Send message</span></div><div><img src="/img/pdf.svg"> <span>Download cv</span></div></div>
+                    </div>
+                </div> #}
+            
+            </section>
+
+    </div>
 {# 
                 <div style='position:relative; width:50px;height:50px'>
                     <div id='svg-animations'>
@@ -91,4 +374,7 @@
                     </div>
                 </div> #}
 
+{% endblock %}
+{% block mainjavascript %}
+{{ encore_entry_script_tags('app') }}
 {% endblock %}

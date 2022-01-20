@@ -7,7 +7,8 @@
 
 // any CSS you import will output into a single css file (app.css in this case)
 
-import './styles/admin.scss';
+
+import './styles/app.scss';
 
 import './styles/fonts-v1.css';
 import '/assets/js/main-v1.js';

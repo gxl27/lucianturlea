@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Project index{% endblock %}
+
+{% block body %}
+    <h1>Project index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>photo</th>
+                <th>Link</th>
+                <th>Subtitle</th>
+                <th>Status</th>
+                <th>Public</th>
+                <th>Production</th>
+                <th>Framework</th>
+                <th>Github</th>
+                <th>Level</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+
+        {% for project in projects %}
+            <tr>
+                <td>{{ project.id }}</td>
+                <td>{{ project.name }}</td>
+                <td>
+                   
+                    {% if project.photo %}          
+                        <img  src=" {{ vich_uploader_asset(project.photo, 'projectImages') | imagine_filter('mini') }} " alt="project-{{ project.photo.id }}">             
+                    {% else %}
+                        <img src="/img/no-picture-mini.jpg">
+                    {% endif %}
+                
+                
+                </td>
+                <td>{{ project.link }}</td>
+                <td>{{ project.subtitle }}</td>
+                <td>{{ project.status ? 'Yes' : 'No' }}</td>
+                <td>{{ project.public ? 'Yes' : 'No' }}</td>
+                <td>{{ project.production ? 'Yes' : 'No' }}</td>
+                <td>{{ project.framework }}</td>
+                <td>{{ project.github }}</td>
+                <td>{{ project.level }}</td>
+                <td>
+                    <a href="{{ path('project_show', {'id': project.id}) }}">show</a>
+                    <a href="{{ path('project_edit', {'id': project.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="11">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('project_new') }}">Create new</a>
+{% endblock %}

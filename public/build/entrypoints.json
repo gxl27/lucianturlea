@@ -2,22 +2,24 @@
   "entrypoints": {
     "app": {
       "js": [
-        "/build/runtime.5897008e.js",
-        "/build/140.98b3bc9f.js",
-        "/build/app.b03b1d25.js"
+        "/build/runtime.js",
+        "/build/vendors-node_modules_symfony_stimulus-bridge_dist_index_js-node_modules_core-js_modules_es_ar-416949.js",
+        "/build/node_modules_symfony_stimulus-bridge_dist_webpack_loader_js_assets_controllers_json-assets_bo-9b3786.js",
+        "/build/app.js"
       ],
       "css": [
-        "/build/app.09236ff1.css"
+        "/build/node_modules_symfony_stimulus-bridge_dist_webpack_loader_js_assets_controllers_json-assets_bo-9b3786.css"
       ]
     },
     "admin": {
       "js": [
-        "/build/runtime.5897008e.js",
-        "/build/140.98b3bc9f.js",
-        "/build/admin.1affbff0.js"
+        "/build/runtime.js",
+        "/build/vendors-node_modules_symfony_stimulus-bridge_dist_index_js-node_modules_core-js_modules_es_ar-416949.js",
+        "/build/node_modules_symfony_stimulus-bridge_dist_webpack_loader_js_assets_controllers_json-assets_bo-9b3786.js",
+        "/build/admin.js"
       ],
       "css": [
-        "/build/admin.066b4622.css"
+        "/build/node_modules_symfony_stimulus-bridge_dist_webpack_loader_js_assets_controllers_json-assets_bo-9b3786.css"
       ]
     }
   }

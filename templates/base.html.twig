@@ -22,11 +22,14 @@
             
         {% endblock %}
     </head>
-    
+   
     <body>
-        {# <div id="overlay">
-            <img src="/assets/img/loader.gif" alt="Loading" style='width:70px'/>
-        </div> #}
+        {% block upscreen %}
+            {# include upscreen (can be removed if needed, overwriting the block) #}
+            <div id='up-screen'>
+                <img src="/img/chev-up.svg" alt="up-arr"/>
+            </div>
+        {% endblock %}
         {% block body %}{% endblock %}
     </body>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js" integrity="sha256-T/f7Sju1ZfNNfBh7skWn0idlCBcI3RwdLSS4/I7NQKQ=" crossorigin="anonymous"></script>
@@ -36,6 +39,6 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.6/l10n/ro.min.js" integrity="sha512-TUeuMefsiJXsoCSnaftAgb+df2dkq8ljkFw4JLAtDb3gfxalGo72jUVOz0vz0KxvrvqDsJnclfrv4WLrXwGrkQ==" crossorigin="anonymous"></script> #}
     {% block mainjavascript %}
         {# <script src="/assets/js/main-v1.js"></script> #}
-           {{ encore_entry_script_tags('app') }}
+           
     {% endblock %}        
 </html>
