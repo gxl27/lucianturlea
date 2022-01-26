@@ -1,28 +1,6 @@
 @media (min-aspect-ratio: 8/5) and (min-width: 600px) {
-    #main-absolute{
-        background-image: url("/public/img/backgroundimg.jpg");
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: cover;
-        max-width: 2200px;
-        width:100%;
-        height:100vh;
-        left:0;
-        top:0;
-        opacity:0;
-        // filter:brightness(25%);
-        position:absolute;
-  
-      }
-    #section-first{
-        background-image: url("/public/img/backgroundimg.jpg");
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: cover;
-        max-width: 2200px;
-        width:100%;
-        height:100vh;
-    }
+
+
     #section-second{
         background-image: url("/public/img/sectioncontact.png");
         // background-color: rgb(13,13,13);
