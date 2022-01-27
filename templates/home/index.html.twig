@@ -3,12 +3,22 @@
 {% block title %}Lucianturlea.ro{% endblock %}
 {% block body %}   
 
-<div id="main" class="container">
+<div id="main">
     {% block navbar %}
         {{ include('/_navbar/_navbar.html.twig') }}
     {% endblock %}
 
     <section id='section-first'>
+        <div id='section-first-right'>
+            <div>
+                <span class='span-elements' style=''>Developing</span>
+                <span class='span-elements' style=' padding-bottom:.8em'>passion.</span>
+                <span class='span-elements' style='padding-bottom:1.8em;font-size:1em;font-weight:normal;font-family:Plex-light;color:#b3b3b3;letter-spacing:.01em;line-height:1.6em'>Made with <b>Symfony</b> and <b>Laravel</b> frameworks.<br>Checkout now my beautiful projects!</span>
+                <div id='myprojects' class='span-elements btn-primary'><img src="/img/checkout.svg"> My Projects</div>
+                
+            </div>
+        </div>
+
         <div id='section-first-left'>
             <div id='main-img' >
                 <img src="/img/backgroundimg.png">
@@ -27,238 +37,79 @@
             </div>
             
         </div>
-        <div id='section-first-right'>
-            <div>
-                <span class='span-elements'>Developing</span>
-                <span class='span-elements' style=' padding-bottom:.5em'>my passion</span>
-                <span class='span-elements btn btn-secondary' style='background-color:#2695AD;font-size:2em;width:max-content; text-align:center;'>My projects</span>
-                
-            </div>
-            <div id="composite-arrow" class='composite-anime'>
-                {# <img src="/img/composite-arrow.svg"> #}
-                    {# <img src="/img/composite-arrow.svg"> #}
-            </div>  
-             <img id='descend-rotate' src="/img/descend-rotate.svg" style='display:none'>  
-        </div>
+        
+    <div id='version' class="version">
+        <img src="/img/version.svg">  
+    </div>
+    
     </section>
 
     <section id='section-second'>
         {# <img src="/img/projectdraw.png"> #}
         <div class="container">
-            <h1>My Projects</h1>
-            <div class="card-holder">
-                <div class="card">
-                    <div class="card-title">
-                        <h2>Design patterns  www.design-patterns.lucianturlea.ro</h2>
-                        <h3>- All 23 classic design patters -</h3>
-                    </div>
-                    <div class="card-content">
-                        This application it's part of the portofolio
-                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laborum perspiciatis odio enim officiis nemo, porro iste dignissimos reprehenderit amet quibusdam ipsum minima delectus assumenda architecto rerum aliquid commodi totam asperiores.
-                    </div>
-                    <div class="card-footer">
-                        technologies
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-title">
-                        <h2>Nova - www.nova.lucianturlea.ro</h2>
-                        <h3>- Custom tourism accomodation software -</h3>
-                    </div>
-                    <div class="card-content">
-                        This application it's part of the portofolio
-                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laborum perspiciatis odio enim officiis nemo, porro iste dignissimos reprehenderit amet quibusdam ipsum minima delectus assumenda architecto rerum aliquid commodi totam asperiores.
-                    </div>
-                    <div class="card-footer">
-                        technologies
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-title">
-                        <h2>Fistic romania www.fisticromania.ro</h2>
-                        <h3>- presentation website -</h3>
-                    </div>
-                    <div class="card-content">
-                        This application it's part of the portofolio
-                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laborum perspiciatis odio enim officiis nemo, porro iste dignissimos reprehenderit amet quibusdam ipsum minima delectus assumenda architecto rerum aliquid commodi totam asperiores.
-                    </div>
-                    <div class="card-footer">
-                        technologies
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-title">
-                        <h2>Caprirom - www.caprirom.lucianturlea.ro</h2>
-                        <h3>- ONG webpage -</h3>
-                    </div>
-                    <div class="card-content">
-                        This application it's part of the portofolio
-                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laborum perspiciatis odio enim officiis nemo, porro iste dignissimos reprehenderit amet quibusdam ipsum minima delectus assumenda architecto rerum aliquid commodi totam asperiores.
-                    </div>
-                    <div class="card-footer">
-                        technologies
-                    </div>
-                </div>
+            <h1>Projects</h1>
+            <div class="subtitle">
+                <p>Currently there are {{ projects|length }} projects visible. Some of them require users credential to access them</p>
+            
             </div>
-        </div>
-        <img class='descend-rotate' src="/img/descend-rotate.svg">            
-    </section>
-    <section id='section-third'>
-        <div class="container">
-            <h1>Experience</h1>
-        </div>
-        <div class="container">
-            <h1>My Projects</h1>
-            <div class="card-holder">
-                <div class="card">
-                    <div class="card-title">
-                        <h2>Design patterns  www.design-patterns.lucianturlea.ro</h2>
-                        <h3>- All 23 classic design patters -</h3>
+            <div class='div-table'>
+               
+                    <div class='div-col'>
+                        #
                     </div>
-                    <div class="card-content">
-                        This application it's part of the portofolio
-                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laborum perspiciatis odio enim officiis nemo, porro iste dignissimos reprehenderit amet quibusdam ipsum minima delectus assumenda architecto rerum aliquid commodi totam asperiores.
+                    <div class='div-col'>
+                        name
                     </div>
-                    <div class="card-footer">
-                        technologies
+                    <div class='div-col div-col-type'>
+                        type
                     </div>
-                </div>
-                <div class="card">
-                    <div class="card-title">
-                        <h2>Nova - www.nova.lucianturlea.ro</h2>
-                        <h3>- Custom tourism accomodation software -</h3>
+                    <div class='div-col'>
+                        techology
                     </div>
-                    <div class="card-content">
-                        This application it's part of the portofolio
-                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laborum perspiciatis odio enim officiis nemo, porro iste dignissimos reprehenderit amet quibusdam ipsum minima delectus assumenda architecto rerum aliquid commodi totam asperiores.
+                    <div class='div-col div-col-type'>
+                        public
                     </div>
-                    <div class="card-footer">
-                        technologies
+                    <div class='div-col'>
+                        actions
                     </div>
-                </div>
-                <div class="card">
-                    <div class="card-title">
-                        <h2>Fistic romania www.fisticromania.ro</h2>
-                        <h3>- presentation website -</h3>
+            
+                {% for project in projects %}
+               
+                    <div class='div-col'>
+                        {{ loop.index }}
                     </div>
-                    <div class="card-content">
-                        This application it's part of the portofolio
-                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laborum perspiciatis odio enim officiis nemo, porro iste dignissimos reprehenderit amet quibusdam ipsum minima delectus assumenda architecto rerum aliquid commodi totam asperiores.
+                    <div class='div-col'>
+                        {{ project.name }}
                     </div>
-                    <div class="card-footer">
-                        technologies
+                    <div class='div-col div-col-type'>
+                        {{ project.subtitle }}
                     </div>
-                </div>
-                <div class="card">
-                    <div class="card-title">
-                        <h2>Caprirom - www.caprirom.lucianturlea.ro</h2>
-                        <h3>- ONG webpage -</h3>
+                    <div class='div-col'>
+                        {{ project.framework }}
                     </div>
-                    <div class="card-content">
-                        This application it's part of the portofolio
-                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laborum perspiciatis odio enim officiis nemo, porro iste dignissimos reprehenderit amet quibusdam ipsum minima delectus assumenda architecto rerum aliquid commodi totam asperiores.
+                    <div class='div-col div-col-type'>
+                        {{ project.public ? "Yes" : "No" }}
                     </div>
-                    <div class="card-footer">
-                        technologies
+                    <div class='div-col'>
+                        <a class='btn-primary' href='{{ project.link }}'>
+                            Visit
+                        </a>
+                        <a class='btn-secondary' href='{{ project.link }}'>
+                            Github
+                        </a>
+                        <a class='btn-secondary' href='{{ project.link }}'>
+                            Details
+                        </a>
                     </div>
-                </div>
+        
+                {% endfor %}
             </div>
-        </div>
-        {# <div id='social-media'>            
-            <div class='tags'>
-                <div>php</div><div>javascript</div><div>html</div><div>css</div><div>mysql</div>
-            </div>
-            <div class='tags'>   
-                <div>symfony</div><div>linux</div><div>git</div>
-            </div>  
-            <div class='social-media'><div><img src="/img/github.svg"><span>View github</span></div><div><img src="/img/gmail.svg"> <span>Send message</span></div><div><img src="/img/pdf.svg"> <span>Download cv</span></div></div>
-            </div>
-        </div> #}
-    
-    </section>
-    <section id='section-forth'>
-        <div class="container">
-            <h1>About me</h1>
-        </div>
-        <div class="container">
-            <div class="card-holder">
-                <div class="card">
-                    <div class="card-title">
-                        <h2>Design patterns  www.design-patterns.lucianturlea.ro</h2>
-                        <h3>- All 23 classic design patters -</h3>
-                    </div>
-                    <div class="card-content">
-                        This application it's part of the portofolio
-                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laborum perspiciatis odio enim officiis nemo, porro iste dignissimos reprehenderit amet quibusdam ipsum minima delectus assumenda architecto rerum aliquid commodi totam asperiores.
-                    </div>
-                    <div class="card-footer">
-                        technologies
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-title">
-                        <h2>Nova - www.nova.lucianturlea.ro</h2>
-                        <h3>- Custom tourism accomodation software -</h3>
-                    </div>
-                    <div class="card-content">
-                        This application it's part of the portofolio
-                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laborum perspiciatis odio enim officiis nemo, porro iste dignissimos reprehenderit amet quibusdam ipsum minima delectus assumenda architecto rerum aliquid commodi totam asperiores.
-                    </div>
-                    <div class="card-footer">
-                        technologies
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-title">
-                        <h2>Fistic romania www.fisticromania.ro</h2>
-                        <h3>- presentation website -</h3>
-                    </div>
-                    <div class="card-content">
-                        This application it's part of the portofolio
-                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laborum perspiciatis odio enim officiis nemo, porro iste dignissimos reprehenderit amet quibusdam ipsum minima delectus assumenda architecto rerum aliquid commodi totam asperiores.
-                    </div>
-                    <div class="card-footer">
-                        technologies
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-title">
-                        <h2>Caprirom - www.caprirom.lucianturlea.ro</h2>
-                        <h3>- ONG webpage -</h3>
-                    </div>
-                    <div class="card-content">
-                        This application it's part of the portofolio
-                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laborum perspiciatis odio enim officiis nemo, porro iste dignissimos reprehenderit amet quibusdam ipsum minima delectus assumenda architecto rerum aliquid commodi totam asperiores.
-                    </div>
-                    <div class="card-footer">
-                        technologies
-                    </div>
-                </div>
-            </div>
-        </div>
-        {# <div id='social-media'>            
-            <div class='tags'>
-                <div>php</div><div>javascript</div><div>html</div><div>css</div><div>mysql</div>
-            </div>
-            <div class='tags'>   
-                <div>symfony</div><div>linux</div><div>git</div>
-            </div>  
-            <div class='social-media'><div><img src="/img/github.svg"><span>View github</span></div><div><img src="/img/gmail.svg"> <span>Send message</span></div><div><img src="/img/pdf.svg"> <span>Download cv</span></div></div>
-            </div>
-        </div> #}
-    
-    </section>
-    <section id='section-fifth'>
-        <div class="container">
-            <h1>Contact</h1>
-        </div>
-        <div class="container">
             <div class="card-holder">
                 {% for project in projects %}
                 <div class="card">
                     <div class='card-photo'>
                     {% if project.photo %}          
-                        <img  src=" {{ vich_uploader_asset(project.photo, 'projectImages') | imagine_filter('img') }} " alt="project-{{ project.photo.id }}">             
+                        <img  src=" {{ vich_uploader_asset(project.photo, 'projectImages') | imagine_filter('profile') }} " alt="project-{{ project.photo.id }}">             
                     {% else %}
                         <img src="/img/no-picture-mini.jpg">
                     {% endif %}
@@ -271,21 +122,148 @@
                     <div class="card-content">
                         {{ project.description }}
                     </div>
+                    <div class="card-technology">
+                        Technologies
+                        <li>Framework: {{ project.framework }}</li>
+                        <li>Framework: {{ project.framework }}</li>
+                        <li>Framework: {{ project.framework }}</li>
+                        <li>Framework: {{ project.framework }}</li>
+                    </div>
                     <div class="card-footer">
-                        <ul>
-                            <li>Framework: {{ project.framework }}</li>
-                            <li>Link: {{ project.link }}</li>
-                            <li>Login: {{ project.login }}</li>
-                            <li>Public: {{ project.public ? "Yes" : "No" }}</li>
-                            <li>Login: {{ project.production ? "Yes" : "No" }}</li>
-                        </ul>
+                        
+                        
+                        <div class="btn-secondary">
+                            {{ project.public ? "Yes" : "No" }}
+                        </div>
+                        <div class="btn-secondary">
+                             {{ project.production ? "Yes" : "No" }}
+                        </div>
+                        <div class="btn-primary">
+                            {# {{ project.login }} #}
+                            login
+                        </div>
+                        <div class="btn-primary">
+                            {# {{ project.link }} #}
+                            visit
+                        </div>
+
 
 
                     </div>
                 </div>
                 {% endfor %}
             </div>
-        </div>    
+        </div>
+        <div class="version">
+        <img src="/img/version3.svg">  
+        </div>
+    </section>
+    <section id='section-third'>
+        <div class="container">
+            <h1>Experience</h1>
+        </div>
+        
+        {# <div id='social-media'>            
+            <div class='tags'>
+                <div>php</div><div>javascript</div><div>html</div><div>css</div><div>mysql</div>
+            </div>
+            <div class='tags'>   
+                <div>symfony</div><div>linux</div><div>git</div>
+            </div>  
+            <div class='social-media'><div><img src="/img/github.svg"><span>View github</span></div><div><img src="/img/gmail.svg"> <span>Send message</span></div><div><img src="/img/pdf.svg"> <span>Download cv</span></div></div>
+            </div>
+        </div> #}
+     <div class="version">
+        <img src="/img/version4.svg">  
+    </div>
+    </section>
+    <section id='section-forth'>
+        <div class="container">
+            <h1>About me</h1>
+        </div>
+        
+        {# <div id='social-media'>            
+            <div class='tags'>
+                <div>php</div><div>javascript</div><div>html</div><div>css</div><div>mysql</div>
+            </div>
+            <div class='tags'>   
+                <div>symfony</div><div>linux</div><div>git</div>
+            </div>  
+            <div class='social-media'><div><img src="/img/github.svg"><span>View github</span></div><div><img src="/img/gmail.svg"> <span>Send message</span></div><div><img src="/img/pdf.svg"> <span>Download cv</span></div></div>
+            </div>
+        </div> #}
+       <div class="version">
+            <img src="/img/version6.svg">  
+        </div>
+    </section>
+    <section id='section-fifth'>
+        <div class="container">
+            <h1>Contact</h1>
+        </div>
+        <div class="container">
+            <div class="contact-content">
+                <div class='contact-details'>
+                    <h5>FISTIC ROMANIA</h5>
+                    {# <div>
+                        <span><img src="/img/location-gray.svg" alt='location'>Navodari, str. Constantei, nr.16, jud. Constanta</span>
+                    </div> #}
+                    {# <div>
+                        <span><img src="/img/phone-gray.svg" alt='phone'>Mobil: <a href="tel:{{ twig_gs.homeSettings.telephone }}">{{ twig_gs.homeSettings.telephone }}</a></span>
+                    </div>
+
+                    <div>
+                        <span><img src="/img/email-gray.svg" alt='email'>Email:{{ twig_gs.homeSettings.email }}</span>
+                    </div> #}
+                    <div>
+                        <span style='justify-content:center'><img src="/img/site-gray.svg" alt='site'>Website: www.fisticromania.ro</span>
+                    </div>
+                </div>
+                <div class='contact-form'>
+                    <h5> Trimite un mesaj</h5>
+                    {{ form_start(form) }}
+                    <div class='w-100'>
+                        {{ form_row(form.name) }}
+                    </div>
+                
+                    <div class='f-col'>
+                        {{ form_row(form.telephone) }}
+                        {{ form_row(form.email) }}
+                    </div>
+                    <div class='w-100'>
+                        {{ form_row(form.title) }}
+                    </div>
+            
+                    {{ form_row(form.subject) }}
+                        <button class='btn-primary' style="color:white">Trimite</button>
+                
+                    
+                    {# {{ form_widget(form) }} #}
+            
+                    {{ form_end(form) }}
+                </div>
+            </div>
+        </div>  
+        {# <div class="version">
+        <img src="/img/version2.svg">  
+    </div>
+    
+    <div class="version">
+        <img src="/img/version4.svg">  
+    </div>
+    <div class="version">
+        <img src="/img/version5.svg">  
+    </div>
+    <div class="version">
+        <img src="/img/version6.svg">  
+    </div>
+    <div class="version">
+        <img src="/img/version7.svg">  
+    </div>   #}
+        
+        <div class="version">
+            <img src="/img/version7.svg">  
+        </div>
+
     </section>
 
 </div>

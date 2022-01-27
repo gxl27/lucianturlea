@@ -24,8 +24,17 @@ scrollUpScreen();
 
 
 if (matchMedia) {
-    const mq = window.matchMedia("(max-width: 1124px)");
-    defaultanimation();
+    const mq = window.matchMedia("(min-width: 768px)");
+    console.log(mq);
+    if(mq.matches){
+        // pc
+        pcAnimation();
+    }else {
+        // mobile
+        mobileAnimation();
+        console.log('mobile');
+    }
+    
     menuitemsanimation()
     mq.addListener(WidthChange);
     WidthChange(mq);
@@ -35,10 +44,11 @@ if (matchMedia) {
   function WidthChange(mq) {
     if (mq.matches) {
         //phone
-        initialphone();
+        initialpc();
+        
 
     } else {
-        initialpc();
+        initialphone();
       // pc
     // 
     }
@@ -56,25 +66,25 @@ function initialphone(){
 
 }
 
-function defaultanimation(){
+function pcAnimation(){
     let nav = document.querySelector('nav');
     let mainIm = mainImg;
     let spanElements = document.querySelectorAll('.span-elements');
     let descendRotate = document.querySelector('#descend-rotate');
 
     initialAnimation = gsap.timeline({ defaults:{duration: 1.2}})
-    initialAnimation.to(nav, { ease: "power2", opacity: 1, delay:0});
-    initialAnimation.from(nav, { ease: "power2", y: "-10%", delay:-1.2});
-    initialAnimation.to(mainIm, { ease: "power3", opacity: 1, duration:2, delay:-.3});
-    initialAnimation.from(mainIm, { ease: "power3", y: "+10%", duration:2, delay:-2.2});
-    initialAnimation.to(spanElements, { ease: "power2", opacity: 1, delay:-.2, stagger: 0.3});
-    initialAnimation.to(descendRotate, { ease: "power3", opacity: 1, duration:2, delay:-.3});
-    initialAnimation.from(descendRotate, { ease: "power3", y: "+10%", duration:2, delay:-2.2});
+    initialAnimation.to(nav, { ease: "expo", opacity: 1, delay:0});
+    initialAnimation.from(nav, { ease: "expo", y: "-10%", delay:-1.2});
+    initialAnimation.to(mainIm, { ease: "power2", opacity: 1, duration:1.8, delay:-.7});
+    initialAnimation.from(mainIm, { ease: "power2", y: "+10%", duration:1.8, delay:-2.8});
+    initialAnimation.to(spanElements, { ease: "expo", opacity: 1, delay:-.4, stagger: 0.3});
+    initialAnimation.to(descendRotate, { ease: "power3", opacity: 1, duration:2, delay:-.4});
+    initialAnimation.from(descendRotate, { ease: "power3", y: "+10%", duration:2, delay:-2.3});
         
     // setTimeout(startTimer, 10000)
     setTimeout(function(){
         startTimer();
-    }, 4500); 
+    }, 200); 
 
     
     function startTimer() {
@@ -90,18 +100,35 @@ function defaultanimation(){
         }, 4000);
 
         function changeSvg(svg){
-            console.log(svg);
+          
             darkSvg.forEach(function(f){
                 f.style.opacity = 0;
             
             })
             setTimeout(function(){
                 svg.style.opacity = 1;
-            }, 500); 
+            }, 200); 
   
         }
     }
 }
+
+function mobileAnimation(){
+    let nav = document.querySelector('nav');
+
+    let spanElements = document.querySelectorAll('.span-elements');
+    let descendRotate = document.querySelector('#descend-rotate');
+
+    initialAnimation = gsap.timeline({ defaults:{duration: 1.2}})
+    initialAnimation.to(nav, { ease: "expo", opacity: 1, delay:0});
+    initialAnimation.from(nav, { ease: "expo", y: "-10%", delay:-1.2});
+    initialAnimation.to(spanElements, { ease: "expo", opacity: 1, delay:-.4, stagger: 0.3});
+    initialAnimation.to(descendRotate, { ease: "power3", opacity: 1, duration:2, delay:-.4});
+    initialAnimation.from(descendRotate, { ease: "power3", y: "+10%", duration:2, delay:-2.3});
+        
+    
+}
+
 
 function showall(){
     content.style.opacity = 1;

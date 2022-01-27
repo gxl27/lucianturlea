@@ -1,16 +1,25 @@
 $font-stack: Poppins, Helvetica, sans-serif;
-$light-color: #f4f4f4;
-$primary-color: #0e6cff;
+
+$color: #aeb2b4;
+$white: #f3f3f3;
+$bg-color: #0D0C0C;
+$font-size: 16px;
+$line-height: 1.5em;
+
+
+// $primary-color: #0e6cff;
+$primary-color: #2795AD;
+
 // $primary-color: #e0ffff;
-$secondary-color: #ff8700;
+$secondary-color: #fc9520;
 
 
 // Set text color based on bg
-@function set-text-color($color) {
-    @if(lightness($color) > 70) {
+@function set-text-color($c) {
+    @if(lightness($c) > 70) {
       @return #333;
     } @else {
-      @return #fff;
+      @return $color;
     }
   }
   
@@ -19,3 +28,34 @@ $secondary-color: #ff8700;
     background-color: $color;
     color: set-text-color($color)
   }
+
+
+// unselect
+%unselect {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background-color: rgb(206, 206, 206);
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #858585;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #757575;
+}
