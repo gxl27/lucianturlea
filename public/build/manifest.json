@@ -24,5 +24,6 @@
   "build/fonts/Poppins-Medium.ttf": "/build/fonts/Poppins-Medium.9e1bb626.ttf",
   "build/fonts/Poppins-SemiBold.ttf": "/build/fonts/Poppins-SemiBold.cce5625b.ttf",
   "build/fonts/Poppins-Bold.ttf": "/build/fonts/Poppins-Bold.404e299b.ttf",
-  "build/fonts/ShareTechMono.ttf": "/build/fonts/ShareTechMono.8b302ac6.ttf"
+  "build/fonts/ShareTechMono.ttf": "/build/fonts/ShareTechMono.8b302ac6.ttf",
+  "build/node_modules_symfony_stimulus-bridge_dist_webpack_loader_js_assets_controllers_json-assets_bo-9b3786.css": "/build/node_modules_symfony_stimulus-bridge_dist_webpack_loader_js_assets_controllers_json-assets_bo-9b3786.css"
 }

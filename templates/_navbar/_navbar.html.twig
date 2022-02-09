@@ -1,12 +1,12 @@
 {% block navbar %}
-
-<nav id="navbar">
-    <div id='logo'>
-        <img src="/img/logo.svg">
-    </div>
+<header>
+  <div id="logo">
+   <img src="/img/logo.svg">
+  </div>
+  <input type="checkbox" id="nav-toggle" class="nav-toggle">
+  <nav>
     <ul>
-        
-        <li class='menu-item' data-scroll="#section-second">
+      <li class='menu-item' data-scroll="#section-second">
 
             <span>Projects</span>
         </li>
@@ -21,6 +21,10 @@
             <span>Message Me</span>
         </li>
     </ul>
-</nav>
+  </nav>
+  <label for="nav-toggle" class="nav-toggle-label">
+    <span></span>
+  </label>
+</header>
 
 {% endblock %}

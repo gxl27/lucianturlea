@@ -8,7 +8,7 @@
         "/build/app.js"
       ],
       "css": [
-        "/build/app.css"
+        "/build/node_modules_symfony_stimulus-bridge_dist_webpack_loader_js_assets_controllers_json-assets_bo-9b3786.css"
       ]
     },
     "admin": {
@@ -19,7 +19,7 @@
         "/build/admin.js"
       ],
       "css": [
-        "/build/admin.css"
+        "/build/node_modules_symfony_stimulus-bridge_dist_webpack_loader_js_assets_controllers_json-assets_bo-9b3786.css"
       ]
     }
   }

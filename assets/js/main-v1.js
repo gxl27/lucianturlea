@@ -25,16 +25,16 @@ scrollUpScreen();
 
 if (matchMedia) {
     const mq = window.matchMedia("(min-width: 768px)");
-    console.log(mq);
+
+    window.device; 
     if(mq.matches){
         // pc
-        pcAnimation();
+        window.device = true
     }else {
         // mobile
-        mobileAnimation();
-        console.log('mobile');
+        window.device = false
     }
-    
+    initialAnimation(window.device);
     menuitemsanimation()
     mq.addListener(WidthChange);
     WidthChange(mq);
@@ -44,10 +44,12 @@ if (matchMedia) {
   function WidthChange(mq) {
     if (mq.matches) {
         //phone
+        window.device = true;
         initialpc();
         
 
     } else {
+        window.device = false;
         initialphone();
       // pc
     // 
@@ -66,25 +68,29 @@ function initialphone(){
 
 }
 
-function pcAnimation(){
-    let nav = document.querySelector('nav');
+function initialAnimation($device){
+    let header = document.querySelector('header');
     let mainIm = mainImg;
     let spanElements = document.querySelectorAll('.span-elements');
-    let descendRotate = document.querySelector('#descend-rotate');
+    
 
     initialAnimation = gsap.timeline({ defaults:{duration: 1.2}})
-    initialAnimation.to(nav, { ease: "expo", opacity: 1, delay:0});
-    initialAnimation.from(nav, { ease: "expo", y: "-10%", delay:-1.2});
-    initialAnimation.to(mainIm, { ease: "power2", opacity: 1, duration:1.8, delay:-.7});
-    initialAnimation.from(mainIm, { ease: "power2", y: "+10%", duration:1.8, delay:-2.8});
+    initialAnimation.to(header, { ease: "expo", opacity: 1, delay:0});
+    initialAnimation.from(header, { ease: "expo", y: "-10%", delay:-1.2});
+    if($device){
+
+        initialAnimation.to(mainIm, { ease: "power2", opacity: 1, duration:1.8, delay:-.7});
+        initialAnimation.from(mainIm, { ease: "power2", y: "+10%", duration:1.8, delay:-2.8});
+    }
     initialAnimation.to(spanElements, { ease: "expo", opacity: 1, delay:-.4, stagger: 0.3});
-    initialAnimation.to(descendRotate, { ease: "power3", opacity: 1, duration:2, delay:-.4});
-    initialAnimation.from(descendRotate, { ease: "power3", y: "+10%", duration:2, delay:-2.3});
+
         
     // setTimeout(startTimer, 10000)
-    setTimeout(function(){
-        startTimer();
-    }, 200); 
+    if($device){
+        setTimeout(function(){
+            startTimer();
+        }, 200); 
+    }
 
     
     function startTimer() {
@@ -112,23 +118,6 @@ function pcAnimation(){
         }
     }
 }
-
-function mobileAnimation(){
-    let nav = document.querySelector('nav');
-
-    let spanElements = document.querySelectorAll('.span-elements');
-    let descendRotate = document.querySelector('#descend-rotate');
-
-    initialAnimation = gsap.timeline({ defaults:{duration: 1.2}})
-    initialAnimation.to(nav, { ease: "expo", opacity: 1, delay:0});
-    initialAnimation.from(nav, { ease: "expo", y: "-10%", delay:-1.2});
-    initialAnimation.to(spanElements, { ease: "expo", opacity: 1, delay:-.4, stagger: 0.3});
-    initialAnimation.to(descendRotate, { ease: "power3", opacity: 1, duration:2, delay:-.4});
-    initialAnimation.from(descendRotate, { ease: "power3", y: "+10%", duration:2, delay:-2.3});
-        
-    
-}
-
 
 function showall(){
     content.style.opacity = 1;
@@ -170,11 +159,18 @@ function menuitemsanimation(){
 
         // on click event (scroll)
         e.addEventListener('click', function(){
+
             if(e.dataset.scroll){
                 link = e.dataset.scroll;
                 element =  document.querySelector(link)
                 // document.querySelector(link).scrollIntoView();
                 scrollToTargetAdjusted(element);
+                if(!window.device){
+                    // hide the navbar for mobile after click on menu items
+                    let navToggle = document.querySelector('#nav-toggle');
+
+                    navToggle.checked = false;
+                }
 
             }
            

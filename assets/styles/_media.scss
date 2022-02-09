@@ -26,13 +26,41 @@
     }
 
 
+    header {
+        .nav-toggle-label {
+            display: none;
+          }
 
-    #navbar {
-        ul {
-            display: flex !important;
-        }
         #logo img {
-            height:45px;
+            height:55px;
+        }
+
+        nav {
+            position: relative;
+          
+            transition: none;
+            transform: scale(1,1);
+            background: none;
+            top: initial;
+            left: initial;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+
+            
+            > ul {
+                gap:3em;
+                flex-direction: row;
+                padding-bottom: unset;
+                background-color: unset;
+                border-bottom: unset;
+            }
+
+            li {
+                opacity: 1;
+                padding: unset;
+            }
+            
         }
     }
 
