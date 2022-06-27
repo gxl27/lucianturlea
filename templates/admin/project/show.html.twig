@@ -3,8 +3,19 @@
 {% block title %}Project{% endblock %}
 
 {% block body %}
+<div class="container">
     <h1>Project</h1>
-
+    <div>
+        {% if project.photos %}
+            {% for photo in project.photos %}
+                {% if photo.profile %}
+                <div>
+                    <img src="{{ vich_uploader_asset(photo) }} " alt="project-{{ photo.id }}">             
+                </div>
+                {% endif %}
+            {% endfor %}
+        {% endif %}   
+    </div>
     <table class="table">
         <tbody>
             <tr>
@@ -36,8 +47,8 @@
                 <td>{{ project.production ? 'Yes' : 'No' }}</td>
             </tr>
             <tr>
-                <th>Framework</th>
-                <td>{{ project.framework }}</td>
+                <th>Tech</th>
+                <td>Tech</td>
             </tr>
             <tr>
                 <th>Github</th>
@@ -49,18 +60,75 @@
             </tr>
         </tbody>
     </table>
-
     <div>
-        Adauga fotografie
+        Add TechList
+        {{ form_start(techList) }}
+        {{ form_widget(techList) }}
+            <button>Add tech</button>
+        {{ form_end(techList) }}
+    </div>
+    <hr style='height:2px; border:1px solid blue'>
+    {% for technology in project.technology %}
+    <div style='display:flex;flex-direction:row'>
+        <div>
+            {{ technology.name }} - {{ technology.version }} 
+        </div>
+        <div class='btn-primary btn-technology-remove' data-link=" {{ path('project_technology_remove', {'id': project.id, 'techid': technology.id}) }} ">
+            remove
+        </div>
+     </div>
+    {% endfor %}
+    <div>
+        Add Challenge
+        {{ form_start(challengeForm) }}
+        {{ form_widget(challengeForm) }}
+            <button>Add Challenge</button>
+        {{ form_end(challengeForm) }}
+    </div>
+    {% for challenge in project.challenges %}
+    <div style='display:flex;flex-direction:row'>
+        <div>
+            {{ challenge.name }} - {{ challenge.solution }} 
+        </div>
+        <div class='btn-primary btn-technology-remove' data-link=" {{ path('project_challenge_remove', {'id': project.id, 'challengeid': challenge.id}) }} ">
+            remove
+        </div>
+     </div>
+    {% endfor %}
+
+    <hr>
+    <div>
+        Add photo
         {{ form_start(form) }}
         {{ form_widget(form) }}
-            <button>Adauga fisier</button>
+            <button>Add photo</button>
         {{ form_end(form) }}
     </div>
-
+    <hr>
+    <div>
+        <span> Submited photos </span>
+        <div>
+        {% if project.photos %}
+            {% for photo in project.photos %}
+                {% if photo.profile is null %}
+                <div>
+                    <a href="{{ path('photo_show', { 'id' :photo.id }) }}">
+                        <img src="{{ vich_uploader_asset(photo, 'projectImages') | imagine_filter('carousel') }} " alt="project-{{ photo.id }}">             
+                    </a>
+                    <div>
+                        {{ photo.details }}
+                    </div>
+                </div>
+                {% endif %}
+            {% endfor %}
+        {% endif %}   
+        </div>
+    </div>
+    <hr>
     <a href="{{ path('project_index') }}">back to list</a>
 
     <a href="{{ path('project_edit', {'id': project.id}) }}">edit</a>
 
     {{ include('admin/project/_delete_form.html.twig') }}
+</div>
 {% endblock %}

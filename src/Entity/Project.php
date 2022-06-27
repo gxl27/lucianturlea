@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\ProjectRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -48,14 +50,10 @@ class Project
     private $production;
 
     /**
-     * @ORM\OneToOne(targetEntity=Photo::class, mappedBy="project", cascade={"persist", "remove"})
+     * @ORM\OneToMany(targetEntity=Photo::class, mappedBy="project", orphanRemoval=true, cascade={"persist", "remove"}))
+     * @ORM\OrderBy({"level" = "DESC"})
      */
-    private $photo;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $framework;
+    private $photos;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
@@ -76,6 +74,25 @@ class Project
      * @ORM\Column(type="text")
      */
     private $description;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Challenge::class, mappedBy="project", orphanRemoval=true, cascade={"persist", "remove"}))
+     * @ORM\OrderBy({"level" = "DESC"})
+     */
+    private $challenges;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Technology::class, inversedBy="projects")
+     * @ORM\OrderBy({"level" = "DESC"})
+     */
+    private $technology;
+
+    public function __construct()
+    {
+        $this->photos = new ArrayCollection();
+        $this->challenges = new ArrayCollection();
+        $this->technology = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -154,36 +171,32 @@ class Project
         return $this;
     }
 
-    public function getPhoto(): ?Photo
+    /**
+     * @return Collection|Photo[]
+     */
+    public function getPhotos(): Collection
     {
-        return $this->photo;
+        return $this->photos;
     }
 
-    public function setPhoto(?Photo $photo): self
+    public function addPhoto(Photo $photo): self
     {
-        // unset the owning side of the relation if necessary
-        if ($photo === null && $this->photo !== null) {
-            $this->photo->setProject(null);
-        }
-
-        // set the owning side of the relation if necessary
-        if ($photo !== null && $photo->getProject() !== $this) {
+        if (!$this->photos->contains($photo)) {
+            $this->photos[] = $photo;
             $photo->setProject($this);
         }
-
-        $this->photo = $photo;
 
         return $this;
     }
 
-    public function getFramework(): ?string
+    public function removePhoto(Photo $photo): self
     {
-        return $this->framework;
-    }
-
-    public function setFramework(?string $framework): self
-    {
-        $this->framework = $framework;
+        if ($this->photos->removeElement($photo)) {
+            // set the owning side to null (unless already changed)
+            if ($photo->getProject() === $this) {
+                $photo->setProject(null);
+            }
+        }
 
         return $this;
     }
@@ -232,6 +245,60 @@ class Project
     public function setDescription(string $description): self
     {
         $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Challenge[]
+     */
+    public function getChallenges(): Collection
+    {
+        return $this->challenges;
+    }
+
+    public function addChallenge(Challenge $challenge): self
+    {
+        if (!$this->challenges->contains($challenge)) {
+            $this->challenges[] = $challenge;
+            $challenge->setProject($this);
+        }
+
+        return $this;
+    }
+
+    public function removeChallenge(Challenge $challenge): self
+    {
+        if ($this->challenges->removeElement($challenge)) {
+            // set the owning side to null (unless already changed)
+            if ($challenge->getProject() === $this) {
+                $challenge->setProject(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Technology[]
+     */
+    public function getTechnology(): Collection
+    {
+        return $this->technology;
+    }
+
+    public function addTechnology(Technology $technology): self
+    {
+        if (!$this->technology->contains($technology)) {
+            $this->technology[] = $technology;
+        }
+
+        return $this;
+    }
+
+    public function removeTechnology(Technology $technology): self
+    {
+        $this->technology->removeElement($technology);
 
         return $this;
     }

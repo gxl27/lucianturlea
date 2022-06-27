@@ -7,6 +7,7 @@ parameters:
     uploads_directory: '%kernel.project_dir%/public/uploads/'
 
     app.path.projectimages: /uploads/photos
+    app.path.techimages: /uploads/tech
 
 services:
     # default configuration for services in *this* file

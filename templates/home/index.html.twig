@@ -1,6 +1,16 @@
 {% extends 'base.html.twig' %}
 {# <a href="mailto:gabrielturlea27@gmail.com"><img src="/img/msg.svg" style='width:25px'>Message me</a>   #}
 {% block title %}Lucianturlea.ro{% endblock %}
+{% block javascripts %}
+    {# # get the parent stylesheet block  #}
+    {{ parent() }}
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+    integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+    crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+    integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+    crossorigin=""></script> 
+{% endblock %}
 {% block body %}   
 
 <div id="main">
@@ -8,13 +18,13 @@
         {{ include('/_navbar/_navbar.html.twig') }}
     {% endblock %}
 
-    <section id='section-first'>
+    <section id='section-first' class='container'>
         <div id='section-first-right'>
             <div>
                 <span class='span-elements' style=''>Developing</span>
-                <span class='span-elements' style=' padding-bottom:.8em'>passion.</span>
-                <span class='span-elements' style='padding-bottom:1.8em;font-size:1em;font-weight:normal;font-family:Plex-light;color:#b3b3b3;letter-spacing:.01em;line-height:1.6em'>Made with <b>Symfony</b> and <b>Laravel</b> frameworks.<br>Checkout now my beautiful projects!</span>
-                <div id='myprojects' class='span-elements btn-primary'><img src="/img/checkout.svg"> My Projects</div>
+                <span class='span-elements' style=' padding-bottom:.5em'>passion.</span>
+                <span class='span-elements' style='padding-bottom:1.1em;font-size:1em;font-weight:normal;font-family:Plex;color:#d3d3d3;letter-spacing:.01em;line-height:1.4em'>Made with <b>Symfony</b> framework.<br>Checkout my beautiful projects!</span>
+                <div id='myprojects' class='span-elements btn-primary'><img src="/img/checkout.svg"> My projects</div>
                 
             </div>
         </div>
@@ -26,30 +36,32 @@
                     <img src="/img/symfony-dark.svg">
                 </div>
                 <div class="dark-svg">
+                    <img src="/img/git-dark.svg">
+                </div>
+                <div class="dark-svg">
+                    <img src="/img/linux-dark.svg">
+                </div>
+                 
+                {# <div class="dark-svg">
                     <img src="/img/laravel-dark.svg">
+                </div> #}
+                <div class="dark-svg">
+                    <img src="/img/sass-dark.svg">
                 </div>
                 <div class="dark-svg">
                     <img src="/img/tailwind-dark.svg">
                 </div>
                 <div class="dark-svg">
-                    <img src="/img/linux-dark.svg">
-                </div>
-                <div class="dark-svg">
-                    <img src="/img/sass-dark.svg">
-                </div>
-                <div class="dark-svg">
                     <img src="/img/figma-dark.svg">
                 </div>
-                <div class="dark-svg">
-                    <img src="/img/git-dark.svg">
-                </div>
+               
             </div>
             
         </div>
         
-    <div id='version' class="version">
-        <img src="/img/version.svg">  
-    </div>
+        <div id='version' class="version">
+            <img src="/img/version.svg">  
+        </div>
     
     </section>
 
@@ -61,38 +73,49 @@
                 <p>Currently there are {{ projects|length }} projects visible. Some of them require users credential to access them</p>
             
             </div>
-            <div class='div-table'>
-               
-                    <div class='div-col'>
-                        #
+            <div id='project-list' class='card-holder'>
+            {% for project in projects %}
+                <div class="card">
+                    <div class="card-photo">
+                        <div>
+                            {% if project.photos %}
+                                {% for photo in project.photos %}
+                                    {% if photo.profile %}
+                                    <div>
+                                        <img src="{{ vich_uploader_asset(photo) }} " alt="project-{{ photo.id }}">             
+                                    </div>
+                                    {% endif %}
+                                {% endfor %}
+                            {% endif %}   
+                        </div>
+                      <div class="card-photo-title">
+                        <span>
+                            {{ project.name }}
+                        </span>
+                        <span>
+                            {{ project.public ? "Public" : "Private" }}
+                        </span>
+                      </div>
                     </div>
-                    <div class='div-col'>
-                        name
+                    <div class="card-content">
+                        <div>
+                            <span>{{ project.subtitle }}</span> 
+                        </div>
+                        <div>
+                            <span>tech</span> 
+                        </div>
                     </div>
-                    <div class='div-col div-col-type'>
-                        type
+                    <div class="card-bottom">
+                        <div class='card-bottom-btn1' title='Jump to the project details'>Details</div>
+                        <div class='card-bottom-btn2' itle='Visit the website'>Live visit</div>
                     </div>
-                    <div class='div-col'>
-                        techology
-                    </div>
-                    <div class='div-col div-col-type'>
-                        public
-                    </div>
-                    <div class='div-col'>
-                        actions
-                    </div>
-            
-                {% for project in projects %}
-               
-                    <div class='div-col'>
+                    {# <div class='div-col'>
                         {{ loop.index }}
                     </div>
                     <div class='div-col'>
                         {{ project.name }}
                     </div>
-                    <div class='div-col div-col-type'>
-                        {{ project.subtitle }}
-                    </div>
+                    
                     <div class='div-col'>
                         {{ project.framework }}
                     </div>
@@ -109,18 +132,20 @@
                         <a class='btn-secondary' href='{{ project.link }}'>
                             Details
                         </a>
-                    </div>
-        
-                {% endfor %}
+                    </div> #}
+                </div>
+            {% endfor %}
             </div>
-            <div class="card-holder">
+            <div id='project-details' class="card-holder">
                 {% for project in projects %}
                 <div class="card">
                     <div class='card-photo'>
-                    {% if project.photo %}          
-                        <img  src=" {{ vich_uploader_asset(project.photo, 'projectImages') | imagine_filter('profile') }} " alt="project-{{ project.photo.id }}">             
-                    {% else %}
-                        <img src="/img/no-picture-mini.jpg">
+                    {% if project.photos %}
+                        {% for photo in project.photos %}
+                            {% if photo.profile %}
+                                <img  src=" {{ vich_uploader_asset(photo)  }} " alt="project-{{ photo.id }}" style='background-color:red'>             
+                            {% endif %}
+                        {% endfor %}          
                     {% endif %}
                     </div>
                     <div class="card-title">
@@ -129,18 +154,44 @@
                         <h3>{{ project.subtitle }}</h3>
                     </div>
                     <div class="card-content">
-                        {{ project.description }}
+                        <div>
+                            {{ project.description }}
+                        </div>
+                        <div>
+                            <div>Challenges:</div>
+                            <div>
+                                {% for challenge in project.challenges %}
+                                <li>{{ challenge.name }}</li> 
+                                <div style='color:green; margin-bottom:15px'>{{ challenge.solution }}</div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        <div>
+                            <div>Overview:</div>
+                            <div>
+                                {% if project.photos %}
+                                    {% for photo in project.photos %}
+                                        {% if photo.profile is null %}
+                                        <div style='margin-bottom:25px'>
+                                            <span>{{ photo.details }}</span>
+                                            <img  src=" {{ vich_uploader_asset(photo)  }} " alt="project-{{ photo.id }}" >             
+                                            
+                                        </div>
+                                        {% endif %}
+                                    {% endfor %}          
+                                {% endif %}
+                            </div>    
+                        </div>
+                    
+
                     </div>
                     <div class="card-technology">
-                        Technologies
-                        <li>Framework: {{ project.framework }}</li>
-                        <li>Framework: {{ project.framework }}</li>
-                        <li>Framework: {{ project.framework }}</li>
-                        <li>Framework: {{ project.framework }}</li>
+                        Technologies:
+                        {% for tech in project.technology %}
+                        <li>{{ tech.name }} - {{ tech.version }}</li>
+                        {% endfor %}
                     </div>
                     <div class="card-footer">
-                        
-                        
                         <div class="btn-secondary">
                             {{ project.public ? "Yes" : "No" }}
                         </div>
@@ -162,22 +213,41 @@
                 </div>
                 {% endfor %}
             </div>
+            {# <div class="version">
+                <img src="/img/version4.svg">  
+            </div> #}
         </div>
-        <div class="version">
-        <img src="/img/version4.svg">  
-        </div>
+        
     </section>
     <section id='section-third'>
         <div class="container">
             <h1>Experience</h1>
             <div>
-            <p>Contrary to popular belief, Lorem Ipsum is not simply random text. 
-                It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. 
-                Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. 
-                Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. 
+            - Diagnose and troubleshoot the most frequent encountered issues related to hardware, software, network, telecom and multimedia issues;
+            - Users' account administration;
+            - Serve as the first point of contact for complex technical requests and cooperate with other teams in order to provide a holistic solution to the user;
+            - Updating the knowledge database by creating new procedures and documenting resolutions;
 
-                The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.</p>
+            ----
+            - process orders from receipt to invoicing, process and handle maintenance contracts,
+            - create the informational packages for Education Trainings and process the related orders,
+            - create service quotations for clients,
+            - schedule field engineer interventions,
+            - maintain a good communication flow with internal and external customers,
+            - regularly organize and update the work procedures for each process.
             </div>
+            <div>
+            Analyze website and application requirements
+            Write clean, effective back-end code and build efficient PHP modules
+            Develop back-end portals with an optimized database
+            Collaborate with front-end developers to integrate works into the application
+            Troubleshoot application and code issues
+            Integrate data storage solutions
+            Update and alter application features to improve performance
+            </div>
+            {# <div class="version">
+                <img src="/img/version4.svg">  
+            </div> #}
         </div>
         
         {# <div id='social-media'>            
@@ -190,9 +260,7 @@
             <div class='social-media'><div><img src="/img/github.svg"><span>View github</span></div><div><img src="/img/gmail.svg"> <span>Send message</span></div><div><img src="/img/pdf.svg"> <span>Download cv</span></div></div>
             </div>
         </div> #}
-     <div class="version">
-        <img src="/img/version4.svg">  
-    </div>
+     
     </section>
     <section id='section-forth'>
         <div class="container">
@@ -214,6 +282,9 @@
                     <li>The first line of Lorem Ipsum,</li>
                 </ul>
             </div>
+            {# <div class="version">
+                <img src="/img/version6.svg">  
+            </div> #}
         </div>
         
         {# <div id='social-media'>            
@@ -226,54 +297,62 @@
             <div class='social-media'><div><img src="/img/github.svg"><span>View github</span></div><div><img src="/img/gmail.svg"> <span>Send message</span></div><div><img src="/img/pdf.svg"> <span>Download cv</span></div></div>
             </div>
         </div> #}
-       <div class="version">
-            <img src="/img/version6.svg">  
-        </div>
+       
     </section>
     <section id='section-fifth'>
         <div class="container">
             <h1>Contact</h1>
-        </div>
-        <div class="container">
+            <div>
+                <div>
+                    Gmail :   <span><img src="/img/email.svg" alt='email'><a href='mailto:lucianturlea27@gmail.com'>lucianturlea27@gmail.com</a></span>
+                </div>
+                <div>
+                    Github :   <span><img src="/img/email.svg" alt='email'><a href='mailto:lucianturlea27@gmail.com'>github</a></span>
+                </div>
+                <div>
+                    Figma :   <span><img src="/img/email.svg" alt='email'><a href='mailto:lucianturlea27@gmail.com'>figma</a></span>
+                </div>
+                <div>
+                    Discord :   <span><img src="/img/email.svg" alt='email'><a href='mailto:lucianturlea27@gmail.com'>figma</a></span>
+                </div>
+
+            </div>
             <div class="contact-content">
                 <div class='contact-details'>
-                    <h5>FISTIC ROMANIA</h5>
-                    {# <div>
-                        <span><img src="/img/location-gray.svg" alt='location'>Navodari, str. Constantei, nr.16, jud. Constanta</span>
-                    </div> #}
-                    {# <div>
-                        <span><img src="/img/phone-gray.svg" alt='phone'>Mobil: <a href="tel:{{ twig_gs.homeSettings.telephone }}">{{ twig_gs.homeSettings.telephone }}</a></span>
-                    </div>
-
+                    <h2>
+                        Send me a message!
+                    </h2>
                     <div>
-                        <span><img src="/img/email-gray.svg" alt='email'>Email:{{ twig_gs.homeSettings.email }}</span>
-                    </div> #}
-
+                        <span>submit the following contact form!</span>
+                    </div>
+                    {# add map #}
                 </div>
                 <div class='contact-form'>
-                    <h5> Trimite un mesaj</h5>
                     {{ form_start(form) }}
-                    <div class='w-100'>
+                    <div>
                         {{ form_row(form.name) }}
                     </div>
-                
-                    <div class='f-col'>
-                        {{ form_row(form.telephone) }}
+                    <div>
                         {{ form_row(form.email) }}
                     </div>
-                    <div class='w-100'>
+                    <div>
                         {{ form_row(form.title) }}
                     </div>
-            
-                    {{ form_row(form.subject) }}
+                     <div>
+                        {{ form_row(form.content) }}
+                    </div>
+                    <div>
                         <button class='btn-primary' style="color:white">Trimite</button>
-                
-                    
+                    </div>
                     {# {{ form_widget(form) }} #}
-            
                     {{ form_end(form) }}
                 </div>
+                
             </div>
+            <div>
+                <span><img src="/img/location.svg" alt='location'>Location: Romania , Constanta city</span>
+            </div>
+            <div id='map'></div>
         </div>  
         {# <div class="version">
         <img src="/img/version2.svg">  
@@ -292,15 +371,20 @@
         <img src="/img/version7.svg">  
     </div>   #}
         
-        <div class="version">
+        {# <div class="version">
             <img src="/img/version7.svg">  
-        </div>
+        </div> #}
 
     </section>
 
 </div>
 
+
+
 {% endblock %}
+
+
+
 {% block mainjavascript %}
 {{ encore_entry_script_tags('app') }}
 {% endblock %}

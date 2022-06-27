@@ -1,0 +1,15 @@
+{% block footer %}
+    {% set checkroute = '/admin' %}
+
+    {# disable the footer for the admin area #}
+    {% if checkroute in app.request.pathInfo %}
+    {% else %}
+
+    <footer>
+        sdasdasd
+    </footer>
+
+    {% endif %}
+    
+
+{% endblock %}

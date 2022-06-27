@@ -3,6 +3,7 @@
 {% block title %}Project index{% endblock %}
 
 {% block body %}
+<div class="container">
     <h1>Project index</h1>
 
     <table class="table">
@@ -16,7 +17,7 @@
                 <th>Status</th>
                 <th>Public</th>
                 <th>Production</th>
-                <th>Framework</th>
+                <th>Technology</th>
                 <th>Github</th>
                 <th>Level</th>
                 <th>actions</th>
@@ -30,20 +31,20 @@
                 <td>{{ project.name }}</td>
                 <td>
                    
-                    {% if project.photo %}          
-                        <img  src=" {{ vich_uploader_asset(project.photo, 'projectImages') | imagine_filter('mini') }} " alt="project-{{ project.photo.id }}">             
-                    {% else %}
-                        <img src="/img/no-picture-mini.jpg">
+                    {% if project.photos %}
+                        {% for photo in project.photos %}
+                            {% if photo.profile %}
+                                <img src=" {{ vich_uploader_asset(photo) }} " alt="project-{{ photo.id }}">             
+                            {% endif %}
+                        {% endfor %}             
                     {% endif %}
-                
-                
                 </td>
                 <td>{{ project.link }}</td>
                 <td>{{ project.subtitle }}</td>
                 <td>{{ project.status ? 'Yes' : 'No' }}</td>
                 <td>{{ project.public ? 'Yes' : 'No' }}</td>
                 <td>{{ project.production ? 'Yes' : 'No' }}</td>
-                <td>{{ project.framework }}</td>
+                <td>tech</td>
                 <td>{{ project.github }}</td>
                 <td>{{ project.level }}</td>
                 <td>
@@ -60,4 +61,5 @@
     </table>
 
     <a href="{{ path('project_new') }}">Create new</a>
+</div>
 {% endblock %}

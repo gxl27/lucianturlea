@@ -5,7 +5,7 @@ namespace App\Controller\Admin\Photo;
 use App\Entity\Photo;
 use App\Form\PhotoType;
 use App\Repository\PhotoRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Controller\BaseController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -13,7 +13,7 @@ use Symfony\Component\Routing\Annotation\Route;
 /**
  * @Route("/admin/photo")
  */
-class PhotoController extends AbstractController
+class PhotoController extends BaseController
 {
     /**
      * @Route("/", name="photo_index", methods={"GET"})
@@ -25,28 +25,28 @@ class PhotoController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/new", name="photo_new", methods={"GET","POST"})
-     */
-    public function new(Request $request): Response
-    {
-        $photo = new Photo();
-        $form = $this->createForm(PhotoType::class, $photo);
-        $form->handleRequest($request);
+    // /**
+    //  * @Route("/new", name="photo_new", methods={"GET","POST"})
+    //  */
+    // public function new(Request $request): Response
+    // {
+    //     $photo = new Photo();
+    //     $form = $this->createForm(PhotoType::class, $photo);
+    //     $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($photo);
-            $entityManager->flush();
+    //     if ($form->isSubmitted() && $form->isValid()) {
+    //         $entityManager = $this->getDoctrine()->getManager();
+    //         $entityManager->persist($photo);
+    //         $entityManager->flush();
 
-            return $this->redirectToRoute('photo_index');
-        }
+    //         return $this->redirectToRoute('photo_index');
+    //     }
 
-        return $this->render('admin/photo/new.html.twig', [
-            'photo' => $photo,
-            'form' => $form->createView(),
-        ]);
-    }
+    //     return $this->render('admin/photo/new.html.twig', [
+    //         'photo' => $photo,
+    //         'form' => $form->createView(),
+    //     ]);
+    // }
 
     /**
      * @Route("/{id}", name="photo_show", methods={"GET"})
@@ -64,6 +64,7 @@ class PhotoController extends AbstractController
     public function edit(Request $request, Photo $photo): Response
     {
         $form = $this->createForm(PhotoType::class, $photo);
+        $form->remove('photo');
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

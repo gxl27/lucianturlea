@@ -4,10 +4,16 @@ namespace App\Controller\Admin\Project;
 
 use App\Entity\Project;
 use App\Entity\Photo;
+use App\Entity\Technology;
+use App\Form\ChallengeType;
 use App\Form\ProjectType;
 use App\Form\PhotoType;
+use App\Form\TechnologyListType;
 use App\Repository\ProjectRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Controller\BaseController;
+use App\Entity\Challenge;
+use App\Form\ProjectTechnologyCollectionType;
+use App\Repository\TechnologyRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -15,7 +21,7 @@ use Symfony\Component\Routing\Annotation\Route;
 /**
  * @Route("/admin/project")
  */
-class ProjectController extends AbstractController
+class ProjectController extends BaseController
 {
     /**
      * @Route("/", name="project_index", methods={"GET"})
@@ -56,9 +62,45 @@ class ProjectController extends AbstractController
     /**
      * @Route("/{id}", name="project_show", methods={"GET", "POST"})
      */
-    public function show(Project $project, Request $request): Response
+    public function show(Project $project, Request $request, TechnologyRepository $techRep): Response
     {
 
+        // technology
+        $techList = $this->createForm(TechnologyListType::class);
+
+        $techList->handleRequest($request);
+        if ($techList->isSubmitted() && $techList->isValid()) {
+        
+            $project->addTechnology($techList->get('technology')->getData());
+
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($project);
+            $entityManager->flush();
+
+            return $this->redirect($request->headers->get('referer'));
+            
+        }
+
+        // challenge
+        $challenge = new Challenge();
+        $challengeForm = $this->createForm(ChallengeType::class, $challenge);
+        //remove the level field (it can be edited only in the challenge\show route)
+        $challengeForm->remove('level');
+
+        $challengeForm->handleRequest($request);
+        if ($challengeForm->isSubmitted() && $challengeForm->isValid()) {
+        
+            $project->addChallenge($challenge);
+
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($project);
+            $entityManager->flush();
+
+            return $this->redirect($request->headers->get('referer'));
+            
+        }
+
+        // photo
         $photo = new Photo();
         $photo->setProject($project);
         $photoForm = $this->createForm(PhotoType::class, $photo);
@@ -78,13 +120,11 @@ class ProjectController extends AbstractController
             
             $photo->setDocument($filename);
             $photo->setName($originalName);
-
-            $project->setPhoto($photo);
+            $project->addPhoto($photo);
 
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($photo);
             $entityManager->flush();
-            dump($photo);
             
             return $this->redirect($request->headers->get('referer'));
 
@@ -92,6 +132,8 @@ class ProjectController extends AbstractController
 
         return $this->render('admin/project/show.html.twig', [
             'project' => $project,
+            'challengeForm' => $challengeForm->createView(), 
+            'techList' => $techList->createView(), 
             'form' => $photoForm->createView()
         ]);
     }
@@ -129,4 +171,78 @@ class ProjectController extends AbstractController
 
         return $this->redirectToRoute('project_index');
     }
+
+    //  ---------------------------------- API ---------------------------------
+
+    /**
+     * @Route("/{id}/profile-picture/", name="project_profile_picture", methods={"POST"})
+     */
+    public function profilePicture(Photo $photo, ProjectRepository $projectRep): Response
+    {
+        $entityManager = $this->getDoctrine()->getManager();
+
+        if(!$photo->getProfile()){
+            $projectId = $photo->getProject()->getId();
+            $project = $projectRep->findOneBy(['id' => $projectId]);
+            $photos = $project->getPhotos();
+            if($photos){
+                for($i=0; $i<sizeof($photos); $i++){
+                    $photos[$i]->setProfile(NULL);
+                    $entityManager->persist($photos[$i]);
+                }
+            }
+            $photo->setProfile(1);
+        }else{
+            $photo->setProfile(NULL);
+        }
+        
+        
+        $entityManager->persist($photo);
+        $this->getDoctrine()->getManager()->flush();   
+        
+        return new Response('success', $status = 200);   
+    }
+
+    /**
+     * @Route("/{id}/technology/remove/{techid}", name="project_technology_remove", methods={"GET"})
+     */
+    public function technologyRemove(Project $id, Technology $techid): Response
+    {
+       
+        $entityManager = $this->getDoctrine()->getManager();
+
+        $id->removeTechnology($techid);
+        try{
+            $entityManager->persist($id);
+            $this->getDoctrine()->getManager()->flush();   
+
+            return new Response('success', $status = 200);  
+
+        }catch(\Exception $e){
+
+            return new Response ($e, $status = 500);
+        }        
+    }
+
+    /**
+     * @Route("/{id}/challenge/remove/{challengeid}", name="project_challenge_remove", methods={"GET"})
+     */
+    public function challengeRemove(Project $id, Challenge $challengeid): Response
+    {
+       
+        $entityManager = $this->getDoctrine()->getManager();
+
+        $id->removeChallenge($challengeid);
+        try{
+            $entityManager->persist($id);
+            $this->getDoctrine()->getManager()->flush();   
+
+            return new Response('success', $status = 200);  
+
+        }catch(\Exception $e){
+
+            return new Response ($e, $status = 500);
+        }        
+    }
+
 }

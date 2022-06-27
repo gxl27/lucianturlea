@@ -2,13 +2,13 @@
 
 namespace App\Controller;
 
-use App\Entity\Service\AllowLogin;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Service\AllowLogin;
+use App\Controller\BaseController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
-class SecurityController extends AbstractController
+class SecurityController extends BaseController
 {
     /**
      * @Route("/login", name="app_login")
@@ -18,8 +18,8 @@ class SecurityController extends AbstractController
         // if ($this->getUser()) {
         //     return $this->redirectToRoute('target_path');
         // }
-        $allowLogin = AllowLogin::allowLogin();
-        if(!$allowLogin){
+
+        if(!$this->gs->checkLogin()){
             return $this->redirectToRoute('home');
         }
 

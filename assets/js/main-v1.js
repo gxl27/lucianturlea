@@ -17,6 +17,8 @@ let menuItems = document.querySelectorAll('.menu-item');
 let checkboxes = document.querySelectorAll('input[type=checkbox]');
 // var svgimages = document.querySelectorAll('.svg-image');
 
+
+
 markCheckboxes();
 
 scrollUpScreen();
@@ -42,25 +44,22 @@ if (matchMedia) {
  
   // media query change
   function WidthChange(mq) {
-    if (mq.matches) {
-        //phone
+    if(mq.matches){
+        //pc
         window.device = true;
         initialpc();
-        
 
-    } else {
+    }else{
+          // phone
         window.device = false;
         initialphone();
-      // pc
+    
     // 
     }
 
 }
 
 function initialpc(){
-
-    
-    
     // showall();
 }
 
@@ -72,18 +71,17 @@ function initialAnimation($device){
     let header = document.querySelector('header');
     let mainIm = mainImg;
     let spanElements = document.querySelectorAll('.span-elements');
-    
+    let versionElement = document.querySelector('#version');
 
     initialAnimation = gsap.timeline({ defaults:{duration: 1.2}})
     initialAnimation.to(header, { ease: "expo", opacity: 1, delay:0});
     initialAnimation.from(header, { ease: "expo", y: "-10%", delay:-1.2});
     if($device){
-
         initialAnimation.to(mainIm, { ease: "power2", opacity: 1, duration:1.8, delay:-.7});
         initialAnimation.from(mainIm, { ease: "power2", y: "+10%", duration:1.8, delay:-2.8});
     }
     initialAnimation.to(spanElements, { ease: "expo", opacity: 1, delay:-.4, stagger: 0.3});
-
+    initialAnimation.to(versionElement, { ease: "expo", opacity: 1, delay:-.4});
         
     // setTimeout(startTimer, 10000)
     if($device){
@@ -102,19 +100,16 @@ function initialAnimation($device){
             }
             changeSvg(darkSvg[counter])
             counter ++;
-
         }, 4000);
 
         function changeSvg(svg){
           
             darkSvg.forEach(function(f){
                 f.style.opacity = 0;
-            
             })
             setTimeout(function(){
                 svg.style.opacity = 1;
             }, 200); 
-  
         }
     }
 }
@@ -171,9 +166,7 @@ function menuitemsanimation(){
 
                     navToggle.checked = false;
                 }
-
             }
-           
         })
         // function for the click - scroll animation
         function scrollToTargetAdjusted(scrolledelement){
@@ -188,9 +181,6 @@ function menuitemsanimation(){
                  behavior: "smooth"
             });
         }
-        
-      
-    
     })
 }
 
@@ -199,8 +189,6 @@ function menuitemsanimation(){
 
   window.addEventListener('load', function(f){
     //display initial homepage
-    
-
     //   tl = gsap.timeline({ defaults:{duration: 3}})
     //   tl.to(main, { ease: "expo", opacity: 1});
      
@@ -208,7 +196,6 @@ function menuitemsanimation(){
     //display monitor animation
     let imageindex = 0;
     // monitoranimation();
-
 
     function monitoranimation(){
 
@@ -257,9 +244,6 @@ function menuitemsanimation(){
         }
       }         
   });
-
-        
-
 }
 
 function markCheckboxes(){
@@ -275,8 +259,6 @@ function markCheckboxes(){
       })
    })
 }
-
-
 
 //upscreen
 function scrollUpScreen(){
@@ -297,8 +279,32 @@ function scrollUpScreen(){
             upScreen.style.display = 'none'
         }
     })
-        
-
-
 }
 
+
+// leaflet map
+function generateMap(){
+    // document.getElementById('s-map').innerHTML = "<div id='map' style='width: 100%; height: 100%;z-index:1;'></div>";
+    // const mymap = L.map('map').setView([46, 25], 6);
+    // const attribution =
+    //   '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors';
+
+    // const tileUrl = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+    // const tiles = L.tileLayer(tileUrl, { attribution });
+    // tiles.addTo(mymap);
+    // L.addTo(mymap);
+    
+    // document.getElementById('s-map').innerHTML = "<div id='map' style='width: 100%; height: 100%;z-index:1;'></div>";
+
+    var map = L.map('map').setView([44.181231, 28.641438], 12);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+
+    L.marker([44.181231, 28.641438]).addTo(map)
+        .bindPopup('Romania: Constanta city')
+        .openPopup();
+    
+}
+generateMap();

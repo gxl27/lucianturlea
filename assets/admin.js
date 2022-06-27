@@ -11,7 +11,7 @@
 import './styles/app.scss';
 
 import './styles/fonts-v1.css';
-import '/assets/js/main-v1.js';
+import '/assets/js/admin-v1.js';
 
 
 // start the Stimulus application

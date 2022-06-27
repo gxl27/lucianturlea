@@ -2,7 +2,7 @@
 namespace App\Listener;
 
 use App\Entity\Photo;
-
+use App\Entity\Technology;
 use Doctrine\Common\EventSubscriber;
 use Liip\ImagineBundle\Imagine\Cache\CacheManager;
 use Doctrine\ORM\Event\PreFlushEventArgs;
@@ -42,6 +42,10 @@ private $uploaderHelper;
 
         if($entity instanceof Photo){
             $this->cacheManager->remove($this->uploaderHelper->asset($entity, 'projectImages'));
+        }
+
+        if($entity instanceof Technology){
+            $this->cacheManager->remove($this->uploaderHelper->asset($entity, 'techImages'));
         }
 
     }

@@ -43,9 +43,24 @@ class Photo
     private $projectImages;
 
     /**
-     * @ORM\OneToOne(targetEntity=Project::class, inversedBy="photo", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity=Project::class, inversedBy="photos", cascade={"persist"})
      */
     private $project;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $profile;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $details;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $level;
 
     public function __construct(){
 
@@ -123,6 +138,42 @@ class Photo
             // if 'updatedAt' is not defined in your entity, use another property
             $this->updatedAt = new \DateTime();
         }
+    }
+
+    public function getProfile(): ?bool
+    {
+        return $this->profile;
+    }
+
+    public function setProfile(?bool $profile): self
+    {
+        $this->profile = $profile;
+
+        return $this;
+    }
+
+    public function getDetails(): ?string
+    {
+        return $this->details;
+    }
+
+    public function setDetails(string $details): self
+    {
+        $this->details = $details;
+
+        return $this;
+    }
+
+    public function getLevel(): ?int
+    {
+        return $this->level;
+    }
+
+    public function setLevel(?int $level): self
+    {
+        $this->level = $level;
+
+        return $this;
     }
 
 }

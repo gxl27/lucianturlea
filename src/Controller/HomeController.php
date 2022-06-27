@@ -5,14 +5,13 @@ namespace App\Controller;
 use App\Entity\Contact;
 use App\Form\ContactType;
 use App\Repository\ProjectRepository;
-
-
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Service\ContactEmailService;
+use App\Controller\BaseController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class HomeController extends AbstractController
+class HomeController extends BaseController
 {
     /**
      * @Route("/", name="index")
@@ -25,7 +24,7 @@ class HomeController extends AbstractController
     /**
      * @Route("/home", name="home")
      */
-    public function home(Request $request, ProjectRepository $projectRepository): Response
+    public function home(Request $request, ProjectRepository $projectRepository, ContactEmailService $contactEmailService): Response
     {
         $projects = $projectRepository->getActive();
 
@@ -38,7 +37,7 @@ class HomeController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) 
         {   
-
+            dump($contactEmailService);
             // $order = new Order();
             // $order->setType(0);
             // $order->setTitle("Nume: ".$contactmsg->getName(). $contactmsg->getTitle());
@@ -57,13 +56,15 @@ class HomeController extends AbstractController
             //     $emailService->send();
             // }
 
-            // $message = "Mesajul a fost trimis!";
-            // $this->addFlash('success', $message);
+            $message = "Mesajul a fost trimis!";
+            $this->addFlash('success', $message);
+
+            return $this->redirectToRoute('home');
 
             // return $this->redirect($request->headers->get('referer'));
 
         }elseif($form->isSubmitted()){
-            $message = "Mesajul nu poate fi trimis! Solicitare invalida";
+            $message = "Message cannot be send! Invalid request";
             $this->addFlash('alert', $message);
         }
 
@@ -74,4 +75,5 @@ class HomeController extends AbstractController
             'projects' => $projects,
         ]);
     }
+
 }

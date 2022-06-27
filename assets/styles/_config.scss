@@ -11,8 +11,15 @@ $line-height: 1.5em;
 $primary-color: #2795AD;
 
 // $primary-color: #e0ffff;
-$secondary-color: #fc9520;
+$secondary-color: #FFCC15;
 
+$success-color: #ffffff;
+$danger-color: #ffffff;
+$info-color: #ffffff;
+
+$success-bg: rgb(11, 151, 11);
+$danger-bg: red;
+$info-bg: rgb(39, 85, 145);
 
 // Set text color based on bg
 @function set-text-color($c) {

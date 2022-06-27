@@ -45,8 +45,6 @@ class ProjectType extends AbstractType
                 
                 ]
             ])
-
-            ->add('framework')
             ->add('github')
             ->add('level', IntegerType::class, [
                 'label' => 'Level',

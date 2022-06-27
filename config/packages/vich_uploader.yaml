@@ -12,3 +12,7 @@ vich_uploader:
             uri_prefix: '%app.path.projectimages%'
             upload_destination: '%kernel.project_dir%/public%app.path.projectimages%'
             namer: Vich\UploaderBundle\Naming\UniqidNamer
+        tech_images:
+            uri_prefix: '%app.path.techimages%'
+            upload_destination: '%kernel.project_dir%/public%app.path.techimages%'
+            namer: Vich\UploaderBundle\Naming\UniqidNamer

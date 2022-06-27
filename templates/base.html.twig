@@ -18,12 +18,15 @@
         {% endblock %}
 
         {% block javascripts %}
-           
+           {# extend to add javascripts link (like leaflet link) #}
             
         {% endblock %}
     </head>
    
     <body>
+        {% block flashes %}
+            {% include "/_flashes/_flashes.html.twig" %}
+        {% endblock %}
 
         {% block upscreen %}
             {# include upscreen (can be removed if needed, overwriting the block) #}
@@ -32,14 +35,23 @@
             </div>
         {% endblock %}
         {% block body %}{% endblock %}
+
+        {% block footer %}
+            {# include footer #}
+            {% include "/_footer/_footer.html.twig" %}
+        {% endblock %}
     </body>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js" integrity="sha256-T/f7Sju1ZfNNfBh7skWn0idlCBcI3RwdLSS4/I7NQKQ=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js" integrity="sha512-IQLehpLoVS4fNzl7IfH8Iowfm5+RiMGtHykgZJl9AWMgqx0AmJ6cRWcB+GaGVtIsnC4voMfm8f2vwtY+6oPjpQ==" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/ScrollTrigger.min.js" integrity="sha512-wK2NuxEyN/6s53M8G7c6cRUXvkeV8Uh5duYS06pAdLq4ukc72errSIyyGQGYtzWEzvVGzGSWg8l79e0VkTJYPw==" crossorigin="anonymous"></script>
-     {# <script src="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.6/flatpickr.min.js" integrity="sha512-Nc36QpQAS2BOjt0g/CqfIi54O6+UWTI3fmqJsnXoU6rNYRq8vIQQkZmkrRnnk4xKgMC3ESWp69ilLpDm6Zu8wQ==" crossorigin="anonymous"></script>
+    {# <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/ScrollTrigger.min.js" integrity="sha512-wK2NuxEyN/6s53M8G7c6cRUXvkeV8Uh5duYS06pAdLq4ukc72errSIyyGQGYtzWEzvVGzGSWg8l79e0VkTJYPw==" crossorigin="anonymous"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.6/flatpickr.min.js" integrity="sha512-Nc36QpQAS2BOjt0g/CqfIi54O6+UWTI3fmqJsnXoU6rNYRq8vIQQkZmkrRnnk4xKgMC3ESWp69ilLpDm6Zu8wQ==" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.6/l10n/ro.min.js" integrity="sha512-TUeuMefsiJXsoCSnaftAgb+df2dkq8ljkFw4JLAtDb3gfxalGo72jUVOz0vz0KxvrvqDsJnclfrv4WLrXwGrkQ==" crossorigin="anonymous"></script> #}
     {% block mainjavascript %}
         {# <script src="/assets/js/main-v1.js"></script> #}
-           
+    {% set checkroute = '/admin' %}
+    {% if checkroute in app.request.pathInfo %}
+        {{ encore_entry_script_tags('admin') }}
+    {% endif %}       
+ 
     {% endblock %}        
 </html>

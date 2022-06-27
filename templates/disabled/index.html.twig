@@ -1,0 +1,76 @@
+{% extends 'base.html.twig' %}
+{# <a href="mailto:gabrielturlea27@gmail.com"><img src="/img/msg.svg" style='width:25px'>Message me</a>   #}
+{% block title %}Lucianturlea.ro{% endblock %}
+{% block javascripts %}
+    {# # get the parent stylesheet block  #}
+    {{ parent() }}
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+    integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+    crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+    integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+    crossorigin=""></script> 
+{% endblock %}
+{% block body %}   
+
+<div id="main">
+    {% block navbar %}
+        {{ include('/_navbar/_navbar.html.twig') }}
+    {% endblock %}
+
+    <section id='section-first' class='container'>
+        <div id='section-first-right'>
+            <div>
+                <span class='span-elements' style=''>Developing</span>
+                <span class='span-elements' style=' padding-bottom:.5em'>passion.</span>
+                <span class='span-elements' style='padding-bottom:1.1em;font-size:1em;font-weight:normal;font-family:Plex;color:#d3d3d3;letter-spacing:.01em;line-height:1.4em'>Made with <b>Symfony</b> framework.<br>Checkout my beautiful projects!</span>
+                <div id='myprojects' class='span-elements btn-primary'><img src="/img/checkout.svg"> My projects</div>
+                
+            </div>
+        </div>
+
+        <div id='section-first-left'>
+            <div id='main-img' >
+                <img src="/img/backgroundimg.png">
+                <div class="dark-svg">
+                    <img src="/img/symfony-dark.svg">
+                </div>
+                <div class="dark-svg">
+                    <img src="/img/laravel-dark.svg">
+                </div>
+                <div class="dark-svg">
+                    <img src="/img/tailwind-dark.svg">
+                </div>
+                <div class="dark-svg">
+                    <img src="/img/linux-dark.svg">
+                </div>
+                <div class="dark-svg">
+                    <img src="/img/sass-dark.svg">
+                </div>
+                <div class="dark-svg">
+                    <img src="/img/figma-dark.svg">
+                </div>
+                <div class="dark-svg">
+                    <img src="/img/git-dark.svg">
+                </div>
+            </div>
+            
+        </div>
+        
+        <div id='version' class="version">
+            <img src="/img/version.svg">  
+        </div>
+    
+    </section>
+
+</div>
+
+
+
+{% endblock %}
+
+
+
+{% block mainjavascript %}
+{{ encore_entry_script_tags('app') }}
+{% endblock %}

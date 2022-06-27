@@ -20,12 +20,6 @@ class Contact
      * @Assert\Length(min=3, max=125)
      */
     private $name;
-        
-    /**
-     * @var(type="string", length=20)
-     * @Assert\Length(min=3, max=20)
-     */
-    private $telephone;
 
     /**
      * @var(type="string", length=100)
@@ -33,7 +27,7 @@ class Contact
     private $email;
 
      /**
-     * @var(type="string", length=255)
+     * @var(type="string", length=255,  nullable=true)
      * @Assert\Length(max=255)
      */
     private $title;
@@ -42,7 +36,7 @@ class Contact
      * @var(type="text")
      * @Assert\Length(max=2000)
      */
-    private $subject;
+    private $content;
 
     /**
      * @var(type="datetime")
@@ -70,19 +64,6 @@ class Contact
     public function setName($name)
     {
         $this->name = $name;
-
-        return $this;
-    }
-
-
-    public function getTelephone()
-    {
-        return $this->telephone;
-    }
-
-    public function setTelephone(string $telephone): self
-    {
-        $this->telephone = $telephone;
 
         return $this;
     }
@@ -121,21 +102,21 @@ class Contact
     }
 
     /**
-     * Get the value of subject
+     * Get the value of content
      */ 
-    public function getSubject()
+    public function getContent()
     {
-        return $this->subject;
+        return $this->content;
     }
 
     /**
-     * Set the value of subject
+     * Set the value of content
      *
      * @return  self
      */ 
-    public function setSubject($subject)
+    public function setContent($content)
     {
-        $this->subject = $subject;
+        $this->content = $content;
 
         return $this;
     }

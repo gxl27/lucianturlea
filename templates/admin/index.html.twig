@@ -1,8 +1,23 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello AdminController!{% endblock %}
+{% block title %}Admin{% endblock %}
 
 {% block body %}
-<a href="{{ path('project_index') }}">Projects</a>
+<div class='container'>
+    <div>
+        <a href="{{ path('project_index') }}">Projects</a>
+    </div>
+    <div>
+        <a href="{{ path('challenge_index') }}">Challenges</a>
+    </div>
+    <div>
+        <a href="{{ path('technology_index') }}">Technologies</a>
+    </div>
+    <div>
+        <a href="{{ path('photo_index') }}">Photos</a>
+    </div>
+</div>
+
+
 
 {% endblock %}
