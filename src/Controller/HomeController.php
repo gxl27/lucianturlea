@@ -30,14 +30,13 @@ class HomeController extends BaseController
 
         $contact = new Contact();
         $form = $this->createForm(ContactType::class, $contact, Contact::ANTISPAM);
-       
-
         
         $form->handleRequest($request);
-
         if ($form->isSubmitted() && $form->isValid()) 
         {   
-            dump($contactEmailService);
+            $contactEmailService->setReciver($this->gs->getEmail());
+            $contactEmailService->initializeEmail($contact);
+            $contactEmailService->send();
             // $order = new Order();
             // $order->setType(0);
             // $order->setTitle("Nume: ".$contactmsg->getName(). $contactmsg->getTitle());
@@ -56,7 +55,7 @@ class HomeController extends BaseController
             //     $emailService->send();
             // }
 
-            $message = "Mesajul a fost trimis!";
+            $message = "Message sent successfully!";
             $this->addFlash('success', $message);
 
             return $this->redirectToRoute('home');
