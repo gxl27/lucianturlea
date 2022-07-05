@@ -42,15 +42,15 @@ class ContactEmailService {
         // $htmlmail = "<div>".$textmail. "<p>". $content . "</p>". "</div>";
 
         $this->email = (new PHPEmail())
-        ->from('notificare@lucianturlea.ro')
+        ->from('ns1root@locs.ro')
         ->to($to)
         //->cc('cc@example.com')
         //->bcc('bcc@example.com')
         //->replyTo('fabien@example.com')
         //->priority(Email::PRIORITY_HIGH)
         ->subject($subject)
-        ->text($content);
-        // ->html($content);
+        ->text($content)
+        ->html($content);
         // ->attach($dompdf->output(), $pdfname);
        
     }

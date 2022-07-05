@@ -1,10 +1,9 @@
 {
-  "build/app.css": "/build/app.212471fc.css",
-  "build/app.js": "/build/app.d06408f2.js",
-  "build/admin.css": "/build/admin.212471fc.css",
-  "build/admin.js": "/build/admin.1277bae9.js",
-  "build/runtime.js": "/build/runtime.5897008e.js",
+  "build/app.js": "/build/app.15cf6a60.js",
+  "build/admin.js": "/build/admin.3b089d76.js",
+  "build/runtime.js": "/build/runtime.0028ced5.js",
   "build/778.3be9f9fb.js": "/build/778.3be9f9fb.js",
+  "build/59.f58be917.css": "/build/59.f58be917.css",
   "build/fonts/Inter-Bold.ttf": "/build/fonts/Inter-Bold.3e3cb905.ttf",
   "build/fonts/Inter-SemiBold.ttf": "/build/fonts/Inter-SemiBold.c6588ec1.ttf",
   "build/fonts/Inter-Medium.ttf": "/build/fonts/Inter-Medium.18b8c68e.ttf",
@@ -26,5 +25,6 @@
   "build/images/expimg.jpg": "/build/images/expimg.52e2fa1e.jpg",
   "build/images/projectimg.jpg": "/build/images/projectimg.0583e17f.jpg",
   "build/images/contactimg.jpg": "/build/images/contactimg.3c0571bb.jpg",
-  "build/fonts/ShareTechMono.ttf": "/build/fonts/ShareTechMono.8b302ac6.ttf"
+  "build/fonts/ShareTechMono.ttf": "/build/fonts/ShareTechMono.8b302ac6.ttf",
+  "build/images/noise.jpg": "/build/images/noise.d1bc826e.jpg"
 }

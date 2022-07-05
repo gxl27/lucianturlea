@@ -29,7 +29,7 @@ class ProjectController extends BaseController
     public function index(ProjectRepository $projectRepository): Response
     {
         $projects = $projectRepository->getAll();
-     
+        dump($projects);
 
         return $this->render('admin/project/index.html.twig', [
             'projects' => $projects

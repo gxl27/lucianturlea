@@ -17,6 +17,10 @@ let menuItems = document.querySelectorAll('.menu-item');
 let checkboxes = document.querySelectorAll('input[type=checkbox]');
 // var svgimages = document.querySelectorAll('.svg-image');
 
+let btnScreenshot = document.querySelectorAll('.btn-screenshot');
+let contentScreenshot = document.querySelectorAll('.content-screenshot');
+let contentScreenshotItemImg = document.querySelectorAll('.content-screenshot-item-img');
+
 
 
 markCheckboxes();
@@ -278,6 +282,31 @@ function scrollUpScreen(){
         }else{
             upScreen.style.display = 'none'
         }
+    })
+}
+
+if(btnScreenshot){
+    btnScreenshot.forEach(function(f){
+        f.addEventListener('click', function(e){
+            contentScreenshot.forEach(function(c){
+                if(f.dataset.id == c.dataset.id){
+                    if(c.style.display == 'flex'){
+                        c.style.display = 'none';
+                    }else {
+                        c.style.display = "flex";
+                    }
+                }
+            })
+        })
+    })
+}
+
+if(contentScreenshotItemImg){
+    contentScreenshotItemImg.forEach(function(f){
+        f.addEventListener('click', function(e){
+ 
+            window.open(f.querySelector('img').src, '_blank');
+        })
     })
 }
 

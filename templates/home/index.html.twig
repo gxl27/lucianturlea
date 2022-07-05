@@ -23,8 +23,8 @@
             <div>
                 <span class='span-elements' style=''>Developing</span>
                 <span class='span-elements' style=' padding-bottom:.5em'>passion.</span>
-                <span class='span-elements' style='padding-bottom:1.1em;font-size:1em;font-weight:normal;font-family:Plex;color:#d3d3d3;letter-spacing:.01em;line-height:1.4em'>Made with <b>Symfony</b> framework.<br>Checkout my beautiful projects!</span>
-                <div id='myprojects' class='span-elements btn-primary'><img src="/img/checkout.svg"> My projects</div>
+                <span class='span-elements' style='padding-bottom:1.1em;font-size:1em;font-weight:normal;font-family:Plex;color:#c3c3c3;letter-spacing:.01em;line-height:1.6em'>Checkout my beautiful web applications!</span>
+                <div id='myprojects' class='span-elements btn-primary menu-item' data-scroll="#section-second"><img src="/img/checkout.svg"> My projects</div>
                 
             </div>
         </div>
@@ -82,32 +82,49 @@
                                 {% for photo in project.photos %}
                                     {% if photo.profile %}
                                     <div>
-                                        <img src="{{ vich_uploader_asset(photo) }} " alt="project-{{ photo.id }}">             
+                                        <img class='logo-ph' src="{{ vich_uploader_asset(photo) }} " alt="project-{{ photo.id }}">             
                                     </div>
                                     {% endif %}
                                 {% endfor %}
                             {% endif %}   
                         </div>
                       <div class="card-photo-title">
-                        <span>
+                        <div class='card-photo-watermark'>
                             {{ project.name }}
-                        </span>
-                        <span>
-                            {{ project.public ? "Public" : "Private" }}
-                        </span>
+                        </div>
                       </div>
                     </div>
                     <div class="card-content">
-                        <div>
-                            <span>{{ project.subtitle }}</span> 
+                        <div class='card-title-name'>
+                          <div>
+                            {{ project.name }}
+                          </div>
+
+                          <div>{{ project.subtitle }}</div> 
                         </div>
-                        <div>
-                            <span>tech</span> 
+                        
+                        <div class='card-subtitle'>
+                            {# <div class="card-overview">
+                                Overview:
+                                <div>
+                                Acesta e un text
+                                </div>
+                            </div> #}
+                            <div class='card-tech'>
+                            
+                                {% for technology in project.technology %}
+                                    <div> <img  src=" {{ vich_uploader_asset(technology)  }} " alt="project-{{ technology.id }}" style='width:30px'><span>{{ technology.name }}</span>  </div> 
+
+                                {% endfor %}
+                            </div>
                         </div>
+
+                        
+                        
                     </div>
                     <div class="card-bottom">
-                        <div class='card-bottom-btn1' title='Jump to the project details'>Details</div>
-                        <div class='card-bottom-btn2' itle='Visit the website'>Live visit</div>
+                        <div class='card-bottom-btn1 menu-item' data-scroll="#project-{{ project.id }}-id" title='Jump to the project details'>Details</div>
+                        <div class='card-bottom-btn2' title='Visit the website'><a href='{{ project.link }}' target="_blank" ><img src='img/live.svg'>Live</a></div>
                     </div>
                     {# <div class='div-col'>
                         {{ loop.index }}
@@ -136,78 +153,88 @@
                 </div>
             {% endfor %}
             </div>
-            <div id='project-details' class="card-holder">
+            <div id='project-details'>
                 {% for project in projects %}
-                <div class="card">
-                    <div class='card-photo'>
-                    {% if project.photos %}
-                        {% for photo in project.photos %}
-                            {% if photo.profile %}
-                                <img  src=" {{ vich_uploader_asset(photo)  }} " alt="project-{{ photo.id }}" style='background-color:red'>             
-                            {% endif %}
-                        {% endfor %}          
-                    {% endif %}
-                    </div>
+                <div id='project-{{ project.id }}-id' class="card">
                     <div class="card-title">
                         <h2>{{ project.name }}</h2>
-                        
                         <h3>{{ project.subtitle }}</h3>
+                        <div class='watermark'>{{ project.name }}</div>
+                    </div>
+                    <div class="card-links">
+                        <div class='card-bottom-btn2' title='Visit the website'><a href='{{ project.link }}' target="_blank" class='card-links-div'><img src='img/live.svg'>Live</a></div>
+                        {% if project.public %}
+                                <a href="{{ project.github }}" target="_blank" class='btn-github card-links-div' title='Github repository'>
+                                   <img src="/img/github.svg" ><span>Github</span>
+                                </a>
+                                
+                            {% else %}
+                            <div style='padding-right:25px;'> Private</div>
+                        {% endif %}
+                        {% if project.login %}
+                                <div class='card-bottom-btn2' title='Visit the login area'><a href='{{ project.login }}' target="_blank" class='card-links-div' ><img src='img/login.svg'>Login</a></div>
+
+                        {% endif %}
+
                     </div>
                     <div class="card-content">
+                        <div class='card-h-subtitle'>Overview:</div>
                         <div>
                             {{ project.description }}
                         </div>
-                        <div>
-                            <div>Challenges:</div>
-                            <div>
-                                {% for challenge in project.challenges %}
-                                <li>{{ challenge.name }}</li> 
-                                <div style='color:green; margin-bottom:15px'>{{ challenge.solution }}</div>
-                                {% endfor %}
-                            </div>
-                        </div>
-                        <div>
-                            <div>Overview:</div>
-                            <div>
-                                {% if project.photos %}
-                                    {% for photo in project.photos %}
-                                        {% if photo.profile is null %}
-                                        <div style='margin-bottom:25px'>
-                                            <span>{{ photo.details }}</span>
-                                            <img  src=" {{ vich_uploader_asset(photo)  }} " alt="project-{{ photo.id }}" >             
-                                        </div>
-                                        {% endif %}
-                                    {% endfor %}          
-                                {% endif %}
-                            </div>    
-                        </div>
-                    
-
                     </div>
                     <div class="card-technology">
-                        Technologies:
-                        {% for tech in project.technology %}
-                        <li>{{ tech.name }} - {{ tech.version }}</li>
-                        {% endfor %}
+                       <div class='card-h-subtitle'>
+                         Technologies:
+                       </div>
+                       <div class='card-technology-container'>
+                            {% for technology in project.technology %}
+                                <div> 
+                                    <img src=" {{ vich_uploader_asset(technology)  }} " alt="project-{{ technology.id }}" style='width:30px'>
+                                    <span>{{ technology.name }} {{ technology.version }}</span>  
+                                </div> 
+
+                            {% endfor %}
+                       </div>
                     </div>
-                    <div class="card-footer">
-                        <div class="btn-secondary">
-                            {{ project.public ? "Yes" : "No" }}
+                    <div class="card-challenge">
+                        <img src='img/ok.svg'>
+                        <div class='card-h-subtitle'>Challenges and solutions:</div>
+                        <div class='card-challenge-container'>
+                            
+                            {% for challenge in project.challenges %}
+                            <div>
+                                <div>{{ challenge.name }}</div> 
+                                <div>{{ challenge.solution }}</div>
+                            </div>
+                            {% endfor %}
                         </div>
-                        <div class="btn-secondary">
-                             {{ project.production ? "Yes" : "No" }}
+                    </div>
+                    <div class="card-photo">
+                        <div class='card-h-subtitle'>screenshots</div>
+                        <div class='card-photo-buttons'>
+                            <div>Website's exemples with screenshots ({{ project.photos|length - 1 }} photos)</div>
+                            <div class='btn-screenshot' data-id="{{ project.id }}">Click to expand</div>
                         </div>
-                        <div class="btn-primary">
-                            {# {{ project.login }} #}
-                            login
-                        </div>
-                        <div class="btn-primary">
-                            {# {{ project.link }} #}
-                            visit
-                        </div>
-
-
-
+                        <div class='content-screenshot' data-id='{{ project.id }}'>
+                            {% if project.photos %}
+                                {% set counter = 0 %}
+                                {% for photo in project.photos %}
+                                    {% if photo.profile is null %}
+                                    {% set counter = counter + 1 %}
+                                    <div class='content-screenshot-item'>
+                                        <div class='content-screenshot-item-counter'>{{ counter }}</div>
+                                        <div class='content-screenshot-item-details'>
+                                            {{ photo.details }}
+                                        </div>
+                                        <div class='content-screenshot-item-img'>
+                                            <img src=" {{ vich_uploader_asset(photo)  }} " alt="project-{{ photo.id }}" >             
+                                        </div>
+                                    </div>
+                                    {% endif %}
+                                {% endfor %}          
+                            {% endif %}
+                        </div>    
                     </div>
                 </div>
                 {% endfor %}
@@ -221,7 +248,85 @@
     <section id='section-third'>
         <div class="container">
             <h1>Experience</h1>
-            <div>
+            <div class='subtitle'>Here are developed skills, my former jobs and my known technologies</div>
+            <div class='exp-list'>
+                <div class='exp-list-item'>
+                    <div class='exp-title-item'>   
+                        <div>
+                            <img src='img/version6.svg'>
+                        </div>
+                        <div>
+                            <h2>Former jobs</h2>
+                            <h3>Those are Former jobs developed in time</h3>
+                        </div>
+                    </div>
+               
+                    <div class='exp-content-item'>
+                        <h4>Caprirom</h4>
+                        <div>
+                            Analyze website and application requirements
+                            Write clean, effective back-end code and build efficient PHP modules
+                            Develop back-end portals with an optimized database
+                            Collaborate with front-end developers to integrate works into the application
+                            Troubleshoot application and code issues
+                            Integrate data storage solutions
+                            Update and alter application features to improve performance
+                        </div>
+                    </div>
+                </div>
+                <div class='exp-list-item'>
+                    <div class='exp-title-item'>    
+                        <div>
+                            <img src='img/version7.svg'>
+                        </div>
+                        <div>
+                            <h2>Known technologies</h2>
+                            <h3>Those are Known technologies developed in time</h3>
+                        </div>
+                    </div>
+                 
+                    <div class='exp-content-item'>
+                        <h4>Known technologies</h4>
+                        <div>
+                            - process orders from receipt to invoicing, process and handle maintenance contracts,
+                            - create the informational packages for Education Trainings and process the related orders,
+                            - create service quotations for clients,
+                            - schedule field engineer interventions,
+                            - maintain a good communication flow with internal and external customers,
+                            - regularly organize and update the work procedures for each process.
+                        </div>
+                    </div>
+                </div>
+                <div class='exp-list-item'>
+                    <div class='exp-title-item'>   
+                        <div>
+                            <img src='img/version5.svg'>
+                        </div>
+                        <div>
+                            <h2>my skills</h2>
+                            <h3>Those are my skills developed in time</h3>
+                        </div>
+                    </div>
+                
+                    <div class='exp-content-item'  style='border-bottom:none'>
+                        <h4>classic skills</h4>
+                        <div>
+                            - Diagnose and troubleshoot the most frequent encountered issues related to hardware, software, network, telecom and multimedia issues;
+                            - Users' account administration;
+                            - Serve as the first point of contact for complex technical requests and cooperate with other teams in order to provide a holistic solution to the user;
+                            - Updating the knowledge database by creating new procedures and documenting resolutions;
+                        </div>
+                        <h4>experiment skills</h4>
+                        <div>
+                            - Serve as the first point of contact for complex technical requests and cooperate with other teams in order to provide a holistic solution to the user;
+                            - Updating the knowledge database by creating new procedures and documenting resolutions;
+                        </div>
+                    </div>
+                
+                </div>
+            </div>
+
+            {# <div>
             - Diagnose and troubleshoot the most frequent encountered issues related to hardware, software, network, telecom and multimedia issues;
             - Users' account administration;
             - Serve as the first point of contact for complex technical requests and cooperate with other teams in order to provide a holistic solution to the user;
@@ -243,10 +348,8 @@
             Troubleshoot application and code issues
             Integrate data storage solutions
             Update and alter application features to improve performance
-            </div>
-            {# <div class="version">
-                <img src="/img/version4.svg">  
             </div> #}
+
         </div>
         
         {# <div id='social-media'>            
@@ -264,7 +367,8 @@
     <section id='section-forth'>
         <div class="container">
             <h1>About me</h1>
-            <div>
+            <div class='subtitle'>Developer with passion for web applications, great innovations and software solutions</div>
+            <div class='about-me-container'>
                 <p>Contrary to popular belief, Lorem Ipsum is not simply random text. 
                 It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. 
                 Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. 
@@ -301,26 +405,35 @@
     <section id='section-fifth'>
         <div class="container">
             <h1>Contact</h1>
-            <div>
+            <div class='subtitle'>Connect with me via social media, or send me e message using the form below!</div>
+            <div class='contact-social-media'>
                 <div>
-                    Gmail :   <span><img src="/img/email.svg" alt='email'><a href='mailto:lucianturlea27@gmail.com'>lucianturlea27@gmail.com</a></span>
+                    <img src="/img/gmail.svg" alt='gmail'> Gmail :   <span><a href='mailto:lucianturlea27@gmail.com'>lucianturlea27@gmail.com</a></span>
                 </div>
                 <div>
-                    Github :   <span><img src="/img/email.svg" alt='email'><a href='mailto:lucianturlea27@gmail.com'>github</a></span>
+                    <img src="/img/github.svg" alt='github'> Github :   <span><a href='https://github.com/gxl27'>gxl27</a></span>
                 </div>
                 <div>
-                    Figma :   <span><img src="/img/email.svg" alt='email'><a href='mailto:lucianturlea27@gmail.com'>figma</a></span>
+                    <img src="/img/figma.svg" alt='figma'> Figma :   <span><a href='https://www.figma.com/file/jlQIiKg37Gy4i6JieUfQKE/Lucianturlea?node-id=0%3A1'>Lucianturlea</a></span>
                 </div>
                 <div>
-                    Discord :   <span><img src="/img/email.svg" alt='email'><a href='mailto:lucianturlea27@gmail.com'>figma</a></span>
+                    <img src="/img/discord.svg" alt='discord'> Discord :   <span>gxl#0075</span>
                 </div>
 
             </div>
             <div class="contact-content">
                 <div class='contact-details'>
+                    
                     <h2>
                         Send me a message!
                     </h2>
+                    <div>
+                        <span>Write me using my e-mail adress:</span>
+                    </div>
+                    <div>
+                        <a href='mailto:lucianturlea27@gmail.com'><span>lucianturlea27@gmail.com</span></a>
+                    </div>
+                    <div><b><span>or</span></b></div>
                     <div>
                         <span>submit the following contact form!</span>
                     </div>
@@ -341,15 +454,15 @@
                         {{ form_row(form.content) }}
                     </div>
                     <div>
-                        <button class='btn-primary' style="color:white">Trimite</button>
+                        <div class='btn-msg-contact' style='display:flex;'>
+                            <button class='btn-secondary'>Submit</button>
+                        
+                        </div>
                     </div>
                     {# {{ form_widget(form) }} #}
                     {{ form_end(form) }}
                 </div>
                 
-            </div>
-            <div>
-                <span><img src="/img/location.svg" alt='location'>Location: Romania , Constanta city</span>
             </div>
             <div id='map'></div>
         </div>  

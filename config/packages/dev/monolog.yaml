@@ -1,19 +1,42 @@
 monolog:
+    channels: ['contact', 'login']
     handlers:
-        main:
-            type: stream
-            path: php://stderr
+        security:
+            # log all messages (since debug is the lowest level)
+            level:    error
+            type:  rotating_file
+            max_files: 30
+            path:     '%kernel.logs_dir%/dev/security.log'
+            channels: ["security"]
+        doctrine:
+            # log all messages (since debug is the lowest level)
+            level:    error
+            type:  rotating_file
+            max_files: 30
+            path:     '%kernel.logs_dir%/dev/doctrine.log'
+            channels: ["doctrine"]
+        request:
+            # log all messages (since debug is the lowest level)
+            level:    critical
+            type:  rotating_file
+            max_files: 30
+            path:     '%kernel.logs_dir%/dev/request.log'
+            channels: ["request"]
+        login:
+            type:  rotating_file
+            max_files: 30
+            path: "%kernel.logs_dir%/dev/login.log"
             level: debug
-            channels: ["!event"]
-        # uncomment to get logging in your browser
-        # you may have to allow bigger header sizes in your Web server configuration
-        #firephp:
-        #    type: firephp
-        #    level: info
-        #chromephp:
-        #    type: chromephp
-        #    level: info
-        console:
-            type: console
-            process_psr_3_messages: false
-            channels: ["!event", "!doctrine", "!console"]
+            channels: ["login"]
+        contact:
+            type:  rotating_file
+            max_files: 30
+            path: "%kernel.logs_dir%/dev/contact.log"
+            level: debug
+            channels: ["contact"]
+        main:
+            type:  rotating_file
+            max_files: 30
+            path: '%kernel.logs_dir%/dev/main.log'
+            level: error
+            channels: ['!event', '!doctrine', '!security', '!request', '!login', '!contact']

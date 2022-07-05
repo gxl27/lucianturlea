@@ -28,12 +28,14 @@
 
     header {
         padding: 1em 1.75em;
+        background-color: unset;
         .nav-toggle-label {
             display: none;
           }
 
         #logo img {
-            height:55px;
+            height:40px;
+            padding-left: 0;
         }
 
         nav {
@@ -69,13 +71,13 @@
 
     #section-first-left{
         display: flex;
-        transform: translateY(-5%);
+     
     }
 
     section {
         flex-direction: row;
-        padding-top:8em;
-        padding-bottom:8em;
+        // padding-top:8em;
+        // padding-bottom:8em;
 
     }
 
@@ -89,7 +91,7 @@
     #section-first-right{
         width:50%;
         margin-top:unset;
-        transform: translateY(-5%);
+       
 
         .span-elements {
             font-size:3.3em;
@@ -99,6 +101,10 @@
             font-size: 72px;
             line-height: 1;
         }
+    }
+
+    #myprojects {
+        width: unset;
     }
 
     .version {
@@ -112,8 +118,145 @@
         }
       }
 
-      .card-holder {
+    .card-holder {
+    justify-content: flex-start;
+    margin-bottom:85px;
+    }
+
+
+    #project-details {
+        .card {
+            
+            display: grid;
+            grid-template-areas: "title title links" 
+                            "content content  technology"
+                            "challenge challenge challenge"
+                            "photo photo photo";
+            grid-template-columns: 1fr 1fr 1fr;
+
+            
+
+        }
+        .card-technology {
+            border-left:1px dashed rgba(255, 255, 255, 0.082);
+            border-top:none;
+        }
+        div.card-links {
+            padding-top:55px;
+            .card-links-div {
+  
+              min-width: 120px;
+        
+            }
+            .card-bottom-btn2 {
+              min-width: 120px;
+            }
+        }
+
+        div.card-challenge-container{
+            grid-template-columns: 50% 50%;
+            
+        }
+
+        .card-photo {
+
+            .card-photo-buttons {
+                flex-direction: row;
+            }
+
+            .btn-screenshot {
+                width: unset;
+            }
+        
+
+            .content-screenshot-item {
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                align-items: center;
+                gap:25px;
+        
+                > div {
+                padding:15px;
+                }
+            }
+
+            .content-screenshot-item-counter {
+                font-size: 110px;
+            }
+
+            .content-screenshot-item:nth-of-type(even) {
+                .content-screenshot-item-img {
+                order: 1;
+                }
+        
+                .content-screenshot-item-details {
+                order: 2;
+                }
+            }
+        }
+    }
+
+    .exp-list {
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: stretch;
         justify-content: flex-start;
-      }
+        gap:65px;
+    }
+
+    .exp-list-item {
+        max-width: 500px;
+        padding-top: unset;
+    }
+
+    .exp-title-item{
+        justify-content: flex-start;
+      
+    }
+
+    .contact-social-media {
+        > div {
+            width: calc(50% - 25px);
+        }
+    }
+
+    .contact-content {
+        flex-direction: row;
+    }
+
+    .contact-details { 
+        padding:75px 45px;
+        width: 45%;
+        border-top-right-radius: 0px;
+        border-bottom-left-radius: 5px;
+        align-items: flex-start;
+    }
+
+    .contact-form {
+        padding:75px 45px;
+        position: relative;
+        width: 55%;
+        border-bottom-left-radius: 0px;
+        border-top-right-radius: 5px;
+
+        form {
+            input, textarea, .btn-msg-contact {
+                min-width: 380px;
+            }
+        }
+        
+    }
+
+    .contact-form:before {
+        content: "";
+        background-color: inherit;
+        position: absolute;
+        top:0;
+        left:-35px;
+        height:100%;
+        width:70px;
+        transform: skewX(-5deg);
+    }
       
 }
