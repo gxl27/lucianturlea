@@ -5,7 +5,7 @@ namespace App\Form;
 use App\Entity\Photo;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Validator\Constraints\File;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Validator\Constraints\PositiveOrZero;
 use Symfony\Component\Form\AbstractType;
@@ -31,7 +31,7 @@ class PhotoType extends AbstractType
                 'required' => false,
                 'constraints' => [new PositiveOrZero()],
             ])
-            ->add('details', TextType::class , [
+            ->add('details', TextareaType::class , [
                 'label' => 'Details',
                 'required' => true,
             ])

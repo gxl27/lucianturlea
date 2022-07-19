@@ -1,4 +1,9 @@
 // admin area
+let body = document.querySelector('body');
+
+document.addEventListener("DOMContentLoaded", function(){
+    body.style.visibility = 'visible';
+});
 
 let btnTechnologyRemove = document.querySelectorAll('.btn-technology-remove');
 

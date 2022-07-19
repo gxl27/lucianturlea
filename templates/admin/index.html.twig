@@ -4,6 +4,14 @@
 
 {% block body %}
 <div class='container'>
+    <h1>Panel</h1>
+
+    <div>
+        <a href="{{ path('contact_index') }}" style='display:flex;gap:20px'>{{ contacts|length }} Messages: <span style='color:#b7f598'>intial: {{ contactsInitial|length }} </span> | <span style='color:#08c9ff'>read: {{ contactsRead|length }} | </span><span style='color:#b8b8b8'>finished: {{ contactsFinished|length }}</span></a>
+    </div>
+    <div>
+        <a href="{{ path('customer_index') }}" style='display:flex;gap:20px'>{{ customers|length }} Customers: <span style='color:#b7f598'>intial: {{ customersInitial|length }} </span> | <span style='color:#08c9ff'>read: {{ customersRead|length }} | </span><span style='color:#b8b8b8'>finished: {{ customersFinished|length }} | </span><span style='color:#f7ed28'>Interviewed: {{ customersInterviewed|length }}</span></a>
+    </div>
     <div>
         <a href="{{ path('project_index') }}">Projects</a>
     </div>

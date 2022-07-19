@@ -5,17 +5,7 @@
 {% block body %}
 <div class="container">
     <h1>Project</h1>
-    <div>
-        {% if project.photos %}
-            {% for photo in project.photos %}
-                {% if photo.profile %}
-                <div>
-                    <img src="{{ vich_uploader_asset(photo) }} " alt="project-{{ photo.id }}">             
-                </div>
-                {% endif %}
-            {% endfor %}
-        {% endif %}   
-    </div>
+    
     <table class="table">
         <tbody>
             <tr>
@@ -60,16 +50,15 @@
             </tr>
         </tbody>
     </table>
-    <div>
-        Add TechList
+    <h2 class='h2-padding'>Add TechList</h2>
+    <div class='container-item'>
         {{ form_start(techList) }}
         {{ form_widget(techList) }}
             <button>Add tech</button>
         {{ form_end(techList) }}
     </div>
-    <hr style='height:2px; border:1px solid blue'>
     {% for technology in project.technology %}
-    <div style='display:flex;flex-direction:row'>
+    <div class='container-item'>
         <div>
             {{ technology.name }} - {{ technology.version }} 
         </div>
@@ -78,15 +67,15 @@
         </div>
      </div>
     {% endfor %}
-    <div>
-        Add Challenge
+    <h2 class='h2-padding'>Add Challenge</h2>
+    <div class='container-item'>
         {{ form_start(challengeForm) }}
         {{ form_widget(challengeForm) }}
             <button>Add Challenge</button>
         {{ form_end(challengeForm) }}
     </div>
     {% for challenge in project.challenges %}
-    <div style='display:flex;flex-direction:row'>
+    <div class='container-item'>
         <div>
             {{ challenge.name }} - {{ challenge.solution }} 
         </div>
@@ -95,18 +84,16 @@
         </div>
      </div>
     {% endfor %}
-
-    <hr>
-    <div>
-        Add photo
+    <h2 class='h2-padding'>Add photo</h2>
+    <div class='container-item'>
+       
         {{ form_start(form) }}
         {{ form_widget(form) }}
             <button>Add photo</button>
         {{ form_end(form) }}
     </div>
-    <hr>
-    <div>
-        <span> Submited photos </span>
+    <div class='container-item'>
+        <h2 class='h2-padding'> Submited photos </h2>
         <div>
         {% if project.photos %}
             {% for photo in project.photos %}
@@ -124,11 +111,12 @@
         {% endif %}   
         </div>
     </div>
-    <hr>
-    <a href="{{ path('project_index') }}">back to list</a>
+    <div class='container-item'>
+        <a href="{{ path('project_index') }}">back to list</a>
 
-    <a href="{{ path('project_edit', {'id': project.id}) }}">edit</a>
+        <a href="{{ path('project_edit', {'id': project.id}) }}">edit</a>
 
-    {{ include('admin/project/_delete_form.html.twig') }}
+        {{ include('admin/project/_delete_form.html.twig') }}
+    </div>
 </div>
 {% endblock %}

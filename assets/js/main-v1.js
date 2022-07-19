@@ -15,6 +15,7 @@ let menuItems = document.querySelectorAll('.menu-item');
 // let matrixSpans = document.querySelectorAll('.terminal');
 // let overlay = document.querySelector('#overlay');
 let checkboxes = document.querySelectorAll('input[type=checkbox]');
+let divFlash = document.querySelectorAll('.div-flash');
 // var svgimages = document.querySelectorAll('.svg-image');
 
 let btnScreenshot = document.querySelectorAll('.btn-screenshot');
@@ -24,10 +25,12 @@ let contentScreenshotItemImg = document.querySelectorAll('.content-screenshot-it
 
 
 markCheckboxes();
-
+hideFlashMsg();
 scrollUpScreen();
 
-
+document.addEventListener("DOMContentLoaded", function(){
+    body.style.visibility = 'visible';
+});
 
 if (matchMedia) {
     const mq = window.matchMedia("(min-width: 768px)");
@@ -130,9 +133,6 @@ function showall(){
     })
     initialize.style.opacity = 0;
 }
-// document.addEventListener("DOMContentLoaded", initialanimation);
-
-
 
 function menuitemsanimation(){
 
@@ -186,6 +186,20 @@ function menuitemsanimation(){
             });
         }
     })
+}
+scrollGsap();
+function scrollGsap() {
+    
+    ScrollTrigger.create({
+        trigger: "#section-second",
+        start: "top top",
+        endTrigger: "#otherID",
+        end: "bottom 50%+=100px",
+        onToggle: self => console.log("toggled, isActive:", self.isActive),
+        onUpdate: self => {
+          console.log("progress:", self.progress.toFixed(3), "direction:", self.direction, "velocity", self.getVelocity());
+        }
+      });
 }
 
 
@@ -264,6 +278,13 @@ function markCheckboxes(){
    })
 }
 
+function hideFlashMsg() {
+    tlHide = gsap.timeline({ defaults:{duration: .5}})
+    tlHide.to(divFlash, { ease: "power3", opacity: 0, duration:1, delay:4});
+    tlHide.to(divFlash, { ease: "power3", zIndex: -1, delay:.1});
+
+}
+
 //upscreen
 function scrollUpScreen(){
     const upScreen = document.querySelector('#up-screen')
@@ -337,3 +358,5 @@ function generateMap(){
     
 }
 generateMap();
+
+

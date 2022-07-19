@@ -27,9 +27,9 @@ class BaseController extends AbstractController
         $this->paginator = $paginator;
 
         if(!$this->gs->checkWebsite()){
-
-            // if the website it's closed, redirect to the 'disabled' route
-            return $this->redirectToRoute('disabled');
+          
+            // if the website it's closed, throw and exception
+            throw new \Exception("Website temporally closed", 445);
             
         }
         

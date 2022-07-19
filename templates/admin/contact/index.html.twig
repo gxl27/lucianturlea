@@ -1,0 +1,61 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Contact index{% endblock %}
+
+{% block body %}
+
+<div class="container">
+    <h1>Contact index</h1>
+    <div>
+        <a href="{{ path('contact_index') }}" style='display:flex;gap:20px'>{{ contacts|length }} Messages: <span style='color:#b7f598'>intial: {{ contactsInitial|length }} </span> | <span style='color:#08c9ff'>read: {{ contactsRead|length }} | </span><span style='color:#b8b8b8'>finished: {{ contactsFinished|length }}</span></a>
+    </div>
+    <div class="table-wrapper">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Title</th>
+                    <th>Content</th>
+                    <th>CreatedAt</th>
+                    <th>Info</th>
+                    <th>Status</th>
+                    <th>Telephone</th>
+                    <th>Customer</th>
+                    <th>actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for contact in contacts %}
+                <tr>
+                    <td>{{ loop.index }}</td>
+                    <td>{{ contact.name }}</td>
+                    <td>{{ contact.email }}</td>
+                    <td>{{ contact.title }}</td>
+                    <td>{{ contact.content }}</td>
+                    <td>{{ contact.createdAt ? contact.createdAt|date('d-M-Y H:i') : '' }}</td>
+                    <td>{{ contact.info }}</td>
+                    <td>{{ contact.getStatusFormated }}</td>
+                    <td>{{ contact.telephone }}</td>
+                    
+                    <td>
+                    {% if contact.customer %}
+                        <a href="{{ path('customer_show', {'id': contact.customer.id}) }}"> {{ contact.customer.name }}</a>
+                    {% endif %}
+                    </td>
+                    <td>
+                        <a href="{{ path('contact_show', {'id': contact.id}) }}">show</a>
+                        <a href="{{ path('contact_edit', {'id': contact.id}) }}">edit</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="10">no records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

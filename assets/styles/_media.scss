@@ -154,7 +154,7 @@
         }
 
         div.card-challenge-container{
-            grid-template-columns: 50% 50%;
+            grid-template-columns: calc(50% - 28px) calc(50% - 28px);
             
         }
 
@@ -206,13 +206,31 @@
     }
 
     .exp-list-item {
+        
         max-width: 500px;
-        padding-top: unset;
+        flex:unset;
+        font-size: .9em;
+        justify-content: flex-start;
+
     }
 
     .exp-title-item{
+        font-size: 1em;
         justify-content: flex-start;
+        
+       
       
+    }
+
+    ul.exp-technologies-img {
+        li {
+            width: calc(50% - 7px);
+        }
+    }
+
+    .about-me-container {
+      
+        max-width: 680px;
     }
 
     .contact-social-media {

@@ -190,7 +190,7 @@
                        <div class='card-technology-container'>
                             {% for technology in project.technology %}
                                 <div> 
-                                    <img src=" {{ vich_uploader_asset(technology)  }} " alt="project-{{ technology.id }}" style='width:30px'>
+                                    <img src=" {{ vich_uploader_asset(technology)  }} " alt="project-{{ technology.id }}" style='width:25px'>
                                     <span>{{ technology.name }} {{ technology.version }}</span>  
                                 </div> 
 
@@ -204,7 +204,7 @@
                             
                             {% for challenge in project.challenges %}
                             <div>
-                                <div>{{ challenge.name }}</div> 
+                                <div>{{ loop.index }}) {{ challenge.name }}</div> 
                                 <div>{{ challenge.solution }}</div>
                             </div>
                             {% endfor %}
@@ -248,7 +248,7 @@
     <section id='section-third'>
         <div class="container">
             <h1>Experience</h1>
-            <div class='subtitle'>Here are developed skills, my former jobs and my known technologies</div>
+            <div class='subtitle'>Here are my former jobs, known technologies and skill. All contribute in my software developer journey:</div>
             <div class='exp-list'>
                 <div class='exp-list-item'>
                     <div class='exp-title-item'>   
@@ -257,22 +257,55 @@
                         </div>
                         <div>
                             <h2>Former jobs</h2>
-                            <h3>Those are Former jobs developed in time</h3>
                         </div>
                     </div>
                
                     <div class='exp-content-item'>
-                        <h4>Caprirom</h4>
+                        <h3>Programmer</h3>
+                        <h4 style='padding-top:13px'> at <a href='https://caprirom.ro' title='Caprirom webpage' style='text-decoration:underline'>Caprirom</a> (2016-2018 | 2 years)</h4>
                         <div>
-                            Analyze website and application requirements
-                            Write clean, effective back-end code and build efficient PHP modules
-                            Develop back-end portals with an optimized database
-                            Collaborate with front-end developers to integrate works into the application
-                            Troubleshoot application and code issues
-                            Integrate data storage solutions
-                            Update and alter application features to improve performance
+                            <p style='padding-top:7px'>Responsabilities:</p>
+                            <ul>
+                                <li>design and development a local application that integrates the flow of informations within the association</li>
+                                <li>analyze the local application requirements and the scalability</li>
+                                <li>facilitate the transfer of data between departments, integrate the devices</li>
+                                <li>build efficient PHP modules for data export, issue the invoice, stats analyze, etc.</li>
+                                <li>adapt the software for dynamic generation of various reports formats (pdf, excel, csv)</li>
+                                <li>develop back-end portals with an optimized database</li>
+                                <li>integrate data storage solutions</li>
+                                <li>troubleshoot application and code issues</li>
+                            </ul>
                         </div>
                     </div>
+                </div>
+                
+                <div class='exp-list-item'>
+                    <div class='exp-title-item'>   
+                        <div>
+                            <img src='img/version5.svg'>
+                        </div>
+                        <div>
+                            <h2>my skills</h2>
+                        </div>
+                    </div>
+                
+                    <div class='exp-content-item'>
+                        <h3>Developer skills</h3>
+                        <div>
+                            <ul>
+                                <li>strong technical skills, attention to detail, responsible</li>
+                                <li>great understanding of the internet, web applications and web servers</li>
+                                <li>capable of writing and integrate new modules for projects</li>
+                                <li>finish tasks without close supervision, good planning skill</li>
+                                <li>identifying, develope and deliver new solutions</li>
+                                <li>fast diagnose and troubleshoot encountered issues of the software application</li>
+                                <li>good cooperating skills, easy to integrate in any team, creative and teamwork player</li>
+                                <li>interested in the latest technologies, proactive, self-motivated</li>
+                                <li>willing to adapt or learn new programming language / frameworks, for an interesting project</li>
+                            </ul>
+                        </div>
+                    </div>
+                
                 </div>
                 <div class='exp-list-item'>
                     <div class='exp-title-item'>    
@@ -281,131 +314,67 @@
                         </div>
                         <div>
                             <h2>Known technologies</h2>
-                            <h3>Those are Known technologies developed in time</h3>
                         </div>
                     </div>
                  
                     <div class='exp-content-item'>
-                        <h4>Known technologies</h4>
+                        <h3>Main languages and frameworks:</h3>
                         <div>
-                            - process orders from receipt to invoicing, process and handle maintenance contracts,
-                            - create the informational packages for Education Trainings and process the related orders,
-                            - create service quotations for clients,
-                            - schedule field engineer interventions,
-                            - maintain a good communication flow with internal and external customers,
-                            - regularly organize and update the work procedures for each process.
+                            <ul class='exp-technologies-img'>
+                                <li><img src='/img/symfony2.svg'>Symfony(PHP)</li>
+                                <li><img src='/img/php.svg'>PHP</li>
+                                <li><img src='/img/js2.svg'>JavaScript</li>
+                                <li><img src='/img/sass.svg'>SASS</li>
+                                <li><img src='/img/mysql2.svg'>MySQL</li>
+                                <li><img src='/img/twig.png'>Twig</li>
+                                
+                            </ul>
+                        </div>
+                        <h3>Other relevant technologies:</h3>
+                        <div>
+                            <ul class='exp-technologies-img'>
+                                <li><img src='/img/linux.svg'>Linux</li>
+                                <li><img src='/img/git.svg'>Git</li>
+                                <li><img src='/img/tailwindcss.svg'>TailwindCss(CSS)</li>
+                                <li><img src='/img/figma.svg'>Figma</li>
+                                <li><img src='/img/bind9.png'>Bind9</li>
+                            </ul>
                         </div>
                     </div>
                 </div>
-                <div class='exp-list-item'>
-                    <div class='exp-title-item'>   
-                        <div>
-                            <img src='img/version5.svg'>
-                        </div>
-                        <div>
-                            <h2>my skills</h2>
-                            <h3>Those are my skills developed in time</h3>
-                        </div>
-                    </div>
-                
-                    <div class='exp-content-item'  style='border-bottom:none'>
-                        <h4>classic skills</h4>
-                        <div>
-                            - Diagnose and troubleshoot the most frequent encountered issues related to hardware, software, network, telecom and multimedia issues;
-                            - Users' account administration;
-                            - Serve as the first point of contact for complex technical requests and cooperate with other teams in order to provide a holistic solution to the user;
-                            - Updating the knowledge database by creating new procedures and documenting resolutions;
-                        </div>
-                        <h4>experiment skills</h4>
-                        <div>
-                            - Serve as the first point of contact for complex technical requests and cooperate with other teams in order to provide a holistic solution to the user;
-                            - Updating the knowledge database by creating new procedures and documenting resolutions;
-                        </div>
-                    </div>
-                
-                </div>
             </div>
-
-            {# <div>
-            - Diagnose and troubleshoot the most frequent encountered issues related to hardware, software, network, telecom and multimedia issues;
-            - Users' account administration;
-            - Serve as the first point of contact for complex technical requests and cooperate with other teams in order to provide a holistic solution to the user;
-            - Updating the knowledge database by creating new procedures and documenting resolutions;
-
-            ----
-            - process orders from receipt to invoicing, process and handle maintenance contracts,
-            - create the informational packages for Education Trainings and process the related orders,
-            - create service quotations for clients,
-            - schedule field engineer interventions,
-            - maintain a good communication flow with internal and external customers,
-            - regularly organize and update the work procedures for each process.
-            </div>
-            <div>
-            Analyze website and application requirements
-            Write clean, effective back-end code and build efficient PHP modules
-            Develop back-end portals with an optimized database
-            Collaborate with front-end developers to integrate works into the application
-            Troubleshoot application and code issues
-            Integrate data storage solutions
-            Update and alter application features to improve performance
-            </div> #}
-
         </div>
-        
-        {# <div id='social-media'>            
-            <div class='tags'>
-                <div>php</div><div>javascript</div><div>html</div><div>css</div><div>mysql</div>
-            </div>
-            <div class='tags'>   
-                <div>symfony</div><div>linux</div><div>git</div>
-            </div>  
-            <div class='social-media'><div><img src="/img/github.svg"><span>View github</span></div><div><img src="/img/gmail.svg"> <span>Send message</span></div><div><img src="/img/pdf.svg"> <span>Download cv</span></div></div>
-            </div>
-        </div> #}
-     
     </section>
     <section id='section-forth'>
         <div class="container">
             <h1>About me</h1>
-            <div class='subtitle'>Developer with passion for web applications, great innovations and software solutions</div>
             <div class='about-me-container'>
-                <p>Contrary to popular belief, Lorem Ipsum is not simply random text. 
-                It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. 
-                Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. 
-                Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. 
-
-                The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.</p>
-                <p>Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. 
-                Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. </p>
-                <ul>
-                    <li>The first line of Lorem Ipsum,</li>
-                    <li>The first line of Lorem Ipsum,</li>
-                    <li>The first line of Lorem Ipsum,</li>
-                    <li>The first line of Lorem Ipsum,</li>
-                    <li>The first line of Lorem Ipsum,</li>
-                </ul>
+                <h2>Short description:</h2>
+                <div>
+                    <p>Hello, my name is <b>Lucian Turlea</b> and I'm {{ 'now'|date('Y') - 1991 }} years old from Constanta, Romania.</p>
+                    <p><b>I am a remote software developer</b> with passion for web applications, great innovations and solutions.</p>
+                    <p>I like to create and develope <b>web applications</b>, great software that is accesible worldwide.</p>
+                    <p>Mostly, I work in <b>Symfony</b> framework, a valuable enviroment to develope my desired projects, but I am interested in any other great oriented object programming framework.</p>
+                    <p>So <b>back-end develope</b> it's my favourite part of the web application. I have a strong knowledge of the UX or UI design, using Webpack Encore bundle to compile JavaScript, SASS files, or install other packages.</p>
+                    <p>As web application represents passion for me, I had to learn to configure <b>web servers</b> and <b>DNS</b> services. <b>Linux</b> servers host all my projects.</p>
+                </div>
+                <h2>Education and studies:</h2>
+                <div>
+                    <ul>
+                        <li>University: Ovidius University - Economy faculty - bachelor's degree (2010 - 2013 | 3 years)</li>
+                        <li>Certification: Link academy - Computer science - PHP programmer (2017 - 2018 | 1 year)</li>
+                        <li>Certification: Oracle academy - Computer science - MySQL programmer (2010 | 3 months)</li>
+                        <li>Certification: ECDL - European Computer Driving Licence Core (2009 | 1 month)</li>
+                    </ul>
+                </div>
             </div>
-            {# <div class="version">
-                <img src="/img/version6.svg">  
-            </div> #}
+            <img src="/img/about-svg.svg" class="about-svg">  
         </div>
-        
-        {# <div id='social-media'>            
-            <div class='tags'>
-                <div>php</div><div>javascript</div><div>html</div><div>css</div><div>mysql</div>
-            </div>
-            <div class='tags'>   
-                <div>symfony</div><div>linux</div><div>git</div>
-            </div>  
-            <div class='social-media'><div><img src="/img/github.svg"><span>View github</span></div><div><img src="/img/gmail.svg"> <span>Send message</span></div><div><img src="/img/pdf.svg"> <span>Download cv</span></div></div>
-            </div>
-        </div> #}
-       
     </section>
     <section id='section-fifth'>
         <div class="container">
             <h1>Contact</h1>
-            <div class='subtitle'>Connect with me via social media, or send me e message using the form below!</div>
+            <div class='subtitle'>Connect via social media, or send me e message using the form below!</div>
             <div class='contact-social-media'>
                 <div>
                     <img src="/img/gmail.svg" alt='gmail'> Gmail :   <span><a href='mailto:lucianturlea27@gmail.com'>lucianturlea27@gmail.com</a></span>
@@ -466,33 +435,8 @@
             </div>
             <div id='map'></div>
         </div>  
-        {# <div class="version">
-        <img src="/img/version2.svg">  
-    </div>
-    
-    <div class="version">
-        <img src="/img/version4.svg">  
-    </div>
-    <div class="version">
-        <img src="/img/version5.svg">  
-    </div>
-    <div class="version">
-        <img src="/img/version6.svg">  
-    </div>
-    <div class="version">
-        <img src="/img/version7.svg">  
-    </div>   #}
-        
-        {# <div class="version">
-            <img src="/img/version7.svg">  
-        </div> #}
-
     </section>
-
 </div>
-
-
-
 {% endblock %}
 
 

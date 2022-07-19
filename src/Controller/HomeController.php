@@ -30,37 +30,29 @@ class HomeController extends BaseController
 
         $contact = new Contact();
         $form = $this->createForm(ContactType::class, $contact, Contact::ANTISPAM);
-        
+        // remove the fields that have to be filled by admin and not the visitor
+        $form->remove('telephone');
+        $form->remove('status');
+        $form->remove('info');
+        $form->remove('customer');
+
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) 
         {   
-            $contactEmailService->setReciver($this->gs->getEmail());
-            $contactEmailService->initializeEmail($contact);
-            $contactEmailService->send();
-            // $order = new Order();
-            // $order->setType(0);
-            // $order->setTitle("Nume: ".$contactmsg->getName(). $contactmsg->getTitle());
-            // $order->setDetails($contactmsg->getSubject());
-            // $order->setTelephone($contactmsg->getTelephone());
-            // $order->setEmail($contactmsg->getEmail());
+            // $contactEmailService->setReciver($this->gs->getEmail());
+            // $contactEmailService->initializeEmail($contact);
+            // $contactEmailService->send();
+           
 
-            // $order->setPriority(0);
-
-            // $entityManager = $this->getDoctrine()->getManager();
-            // $entityManager->persist($order);
-            // $entityManager->flush();
-
-            // if(!$this->gs->getDisableEmail()){
-            //     $emailService = new EmailService($this->gs, $order, $mailer);
-            //     $emailService->send();
-            // }
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($contact);
+            $entityManager->flush();
 
             $message = "Message sent successfully!";
             $this->addFlash('success', $message);
 
             return $this->redirectToRoute('home');
 
-            // return $this->redirect($request->headers->get('referer'));
 
         }elseif($form->isSubmitted()){
             $message = "Message cannot be send! Invalid request";

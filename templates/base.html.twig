@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <html>
+    {# --- set variable for admin routes (it will be used to load the specified css and scripts) --  #}
+    {% set checkroute = '/admin' %}
     <head>
         <meta charset="UTF-8">
         <meta name="google" content="notranslate">
@@ -10,10 +12,11 @@
         {# Run `composer require symfony/webpack-encore-bundle`
            and uncomment the following Encore helpers to start using Symfony UX #}
         {% block stylesheets %}
-            {#{{ encore_entry_link_tags('app') }}#}
-            {# <link rel="stylesheet" type="text/css" href="/assets/css/fonts-v1.css">
-            <link rel="stylesheet" type="text/css" href="/assets/css/main-v1.css"> #}
+        {# --- load css for the admin routes --  #}
             {{ encore_entry_link_tags('app') }}
+            {% if checkroute in app.request.pathInfo %}
+                {{ encore_entry_link_tags('admin') }}
+            {% endif %}  
 
         {% endblock %}
 
@@ -24,6 +27,13 @@
     </head>
    
     <body>
+        {% block adminNavbar %}
+            {% if checkroute in app.request.pathInfo %}
+                {% include "/admin/_navbar/_index.html.twig" %}
+            {% endif %}  
+        {% endblock %}
+     
+
         {% block flashes %}
             {% include "/_flashes/_flashes.html.twig" %}
         {% endblock %}
@@ -43,12 +53,10 @@
     </body>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js" integrity="sha256-T/f7Sju1ZfNNfBh7skWn0idlCBcI3RwdLSS4/I7NQKQ=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js" integrity="sha512-IQLehpLoVS4fNzl7IfH8Iowfm5+RiMGtHykgZJl9AWMgqx0AmJ6cRWcB+GaGVtIsnC4voMfm8f2vwtY+6oPjpQ==" crossorigin="anonymous"></script>
-    {# <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/ScrollTrigger.min.js" integrity="sha512-wK2NuxEyN/6s53M8G7c6cRUXvkeV8Uh5duYS06pAdLq4ukc72errSIyyGQGYtzWEzvVGzGSWg8l79e0VkTJYPw==" crossorigin="anonymous"></script>
-     <script src="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.6/flatpickr.min.js" integrity="sha512-Nc36QpQAS2BOjt0g/CqfIi54O6+UWTI3fmqJsnXoU6rNYRq8vIQQkZmkrRnnk4xKgMC3ESWp69ilLpDm6Zu8wQ==" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.6/l10n/ro.min.js" integrity="sha512-TUeuMefsiJXsoCSnaftAgb+df2dkq8ljkFw4JLAtDb3gfxalGo72jUVOz0vz0KxvrvqDsJnclfrv4WLrXwGrkQ==" crossorigin="anonymous"></script> #}
+    {# <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/ScrollTrigger.min.js" integrity="sha512-wK2NuxEyN/6s53M8G7c6cRUXvkeV8Uh5duYS06pAdLq4ukc72errSIyyGQGYtzWEzvVGzGSWg8l79e0VkTJYPw==" crossorigin="anonymous"></script>#}
+    
     {% block mainjavascript %}
-        {# <script src="/assets/js/main-v1.js"></script> #}
-    {% set checkroute = '/admin' %}
+    
     {% if checkroute in app.request.pathInfo %}
         {{ encore_entry_script_tags('admin') }}
     {% endif %}       
