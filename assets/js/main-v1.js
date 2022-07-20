@@ -187,21 +187,6 @@ function menuitemsanimation(){
         }
     })
 }
-scrollGsap();
-function scrollGsap() {
-    
-    ScrollTrigger.create({
-        trigger: "#section-second",
-        start: "top top",
-        endTrigger: "#otherID",
-        end: "bottom 50%+=100px",
-        onToggle: self => console.log("toggled, isActive:", self.isActive),
-        onUpdate: self => {
-          console.log("progress:", self.progress.toFixed(3), "direction:", self.direction, "velocity", self.getVelocity());
-        }
-      });
-}
-
 
  function initialanimation(){
 
